@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/coreo/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/coreo/static/js/main.d7dcf26b.chunk.js",
+    "main.js.map": "/coreo/static/js/main.d7dcf26b.chunk.js.map",
+    "runtime-main.js": "/coreo/static/js/runtime-main.39c935aa.js",
+    "runtime-main.js.map": "/coreo/static/js/runtime-main.39c935aa.js.map",
+    "static/js/2.292d7bbb.chunk.js": "/coreo/static/js/2.292d7bbb.chunk.js",
+    "static/js/2.292d7bbb.chunk.js.map": "/coreo/static/js/2.292d7bbb.chunk.js.map",
+    "static/js/3.977b55fc.chunk.js": "/coreo/static/js/3.977b55fc.chunk.js",
+    "static/js/3.977b55fc.chunk.js.map": "/coreo/static/js/3.977b55fc.chunk.js.map",
+    "index.html": "/coreo/index.html",
+    "static/css/main.9d5b29c0.chunk.css.map": "/coreo/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.292d7bbb.chunk.js.LICENSE.txt": "/coreo/static/js/2.292d7bbb.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/coreo/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.39c935aa.js",
+    "static/js/2.292d7bbb.chunk.js",
+    "static/css/main.9d5b29c0.chunk.css",
+    "static/js/main.d7dcf26b.chunk.js"
+  ]
+}
