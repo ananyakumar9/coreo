@@ -13,8 +13,6 @@ class Screen extends React.Component{
             quote:'',
             author:'',
             momentContext: moment(),
-            showMonthPopup:false,
-            showYearPopup:false,
             weekdays:moment.weekdays(),
             weekdaysshort:moment.weekdaysShort(),
             months:moment.months(),
