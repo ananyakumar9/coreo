@@ -23,7 +23,9 @@
   text-align: center;
   
 }
-
+.day:hover{
+  cursor: pointer;
+}
 .cur-date{
   background-color:olive;
   color: white;
