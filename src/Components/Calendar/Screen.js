@@ -1,12 +1,13 @@
 import moment from 'moment';
 import React from 'react';
+
 import './Cal.css'
 //https://momentjs.com/docs/#/get-set/month/
 class Screen extends React.Component{
     constructor(props)
     {
         super(props)
-        
+       
         this.state={
             name:props.dets.name,
             quote:'',
@@ -67,12 +68,10 @@ class Screen extends React.Component{
     }
 
     handlechange=(e)=>{
-        console.log(e.target.value)
-        var index=this.state.months.indexOf(e.target.value)
-        let con=Object.assign({}, this.state.momentContext)
-        con=moment(this.state.momentContext).set('month', index)
+        
+    
         this.setState({
-            momentContext:con
+            momentContext:moment(this.state.momentContext).set('month', this.state.months.indexOf(e.target.value))
 
         }, ()=>{
             
@@ -85,7 +84,7 @@ class Screen extends React.Component{
         
         for(let i=0;i<this.firstDayOfMonth();i++)
         {
-            blanks.push(<span className="day">{" "}</span>)
+            blanks.push(<span className="day" key="i*40">{" "}</span>)
         }
         
         let daysM=[]
@@ -122,10 +121,10 @@ class Screen extends React.Component{
                     <div className="calendar">
                     <div className="months-bar">
                     {this.month()}
-                        <select className="months-popup" onChange={this.handlechange}>
+                        <select className="months-popup" onChange={this.handlechange} value={this.month()}>
                             
                         {
-                            !this.state.showMonthPopup?
+                            
                             this.state.months.map((data)=>{
                                 return (
                                     <option value={data}>
@@ -133,8 +132,8 @@ class Screen extends React.Component{
 
                                     </option>
                                 )
-                            }):
-                            ''
+                            })
+                            
                         }
                         </select>
 
