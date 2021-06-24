@@ -1,0 +1,34 @@
+.calendar{
+  display:block;
+  max-width: 440px;
+  background-color: black;
+  color: white;
+  padding:5px;
+  margin:auto;
+}
+.Alldays{
+  display:grid;
+  width: fit-content;
+  grid-template-columns: repeat(7, 54px);
+  row-gap:4px;
+  column-gap:8px;
+  margin:4px;
+  justify-content: center;
+  
+  
+}
+.day, .daysOfWeek{
+  display:block;
+  padding:4px;
+  text-align: center;
+  
+}
+
+.cur-date{
+  background-color:olive;
+  color: white;
+}
+.months-bar{
+  text-align: left;
+  display: inline;
+}
