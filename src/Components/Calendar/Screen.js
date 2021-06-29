@@ -1,6 +1,6 @@
 import moment from 'moment';
 import React from 'react';
-import './Cal.css'
+import './Cal.css';
 //https://momentjs.com/docs/#/get-set/month/
 class Screen extends React.Component{
     constructor(props)
@@ -68,9 +68,8 @@ class Screen extends React.Component{
 
     handlechange=(e)=>{
         console.log(e.target.value)
-        var index=this.state.months.indexOf(e.target.value)
-        let con=Object.assign({}, this.state.momentContext)
-        con=moment(this.state.momentContext).set('month', index)
+        var index=this.state.months.indexOf(e.target.value);
+        let con=moment(this.state.momentContext).set('month', index);
         this.setState({
             momentContext:con
 
@@ -112,7 +111,6 @@ class Screen extends React.Component{
                     this.state.author
                 }
 
-                <br />
                 <br />
                 <br />
                 <br />
