@@ -9,24 +9,28 @@ class App extends Component{
   constructor(){
     super();
     this.state={
-      route:'SignIn'
+      route:'SignIn',
+      user:'undef'
     }
   }
 
   onRouteChange=(route)=>{
     this.setState({route:route});
   }
-
+onUserChange=(user)=>{
+  console.log(user)
+  this.setState({user:user})
+}
   render(){
   return (
     <div className="App">
-      <Navigation onRouteChange={this.onRouteChange} route={this.state.route}/>
+      <Navigation onRouteChange={this.onRouteChange} route={this.state.route} />
       {this.state.route==='SignIn'?
-      <SignIn onRouteChange={this.onRouteChange}/>
-      :[this.state.route==='Register'?
-      <Register onRouteChange={this.onRouteChange}/>:
-      <Home/>
-      ]}
+      <SignIn onRouteChange={this.onRouteChange} onUserChange={this.onUserChange}/>
+      :this.state.route==='Register'?
+      <Register onRouteChange={this.onRouteChange} onUserChange={this.onUserChange}/>:
+      <Home user={this.state.user}/>
+      }
     </div>
   );
 }

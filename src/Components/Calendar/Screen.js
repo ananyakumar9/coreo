@@ -7,7 +7,7 @@ class Screen extends React.Component{
     constructor(props)
     {
         super(props)
-       
+       console.log(props)
         this.state={
             name:props.dets.name,
             quote:'',
@@ -82,14 +82,14 @@ class Screen extends React.Component{
         
         for(let i=0;i<this.firstDayOfMonth();i++)
         {
-            blanks.push(<span className="day" key="i*40">{" "}</span>)
+            blanks.push(<span className="day" key={(i+1)*40}>{" "}</span>)
         }
         
         let daysM=[]
         for(let i=1;i<=this.daysIMonth();i++)
         {
             let c=(i===this.curdate() && this.month()===this.state.thisMonth && this.year()===this.state.thisYear)?"day cur-date": "day"
-            daysM.push(<span key={i} className={c} onClick={()=>console.log(i+" "+this.month())}>{i}</span>)
+            daysM.push(<span key={i} className={c} onClick={()=>this.props.reqdatechange(moment(i+"."+this.month()+"."+this.year()).format("DD-MM-YYYY"))}>{i}</span>)
         }
 
         daysM=[...blanks, ...daysM]
@@ -98,7 +98,7 @@ class Screen extends React.Component{
         return(
             <div>
                 {
-                    this.state.name
+                    //this.state.name
                 }
                 <br />
                 {
