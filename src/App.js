@@ -10,7 +10,7 @@ class App extends Component{
     super();
     this.state={
       route:'SignIn',
-      user:'undef'
+      user:0
     }
   }
 
@@ -29,7 +29,10 @@ onUserChange=(user)=>{
       <SignIn onRouteChange={this.onRouteChange} onUserChange={this.onUserChange}/>
       :this.state.route==='Register'?
       <Register onRouteChange={this.onRouteChange} onUserChange={this.onUserChange}/>:
-      <Home user={this.state.user}/>
+      
+        !this.state.user==0?
+      
+      <Home user={this.state.user}/>:' Loading '
       }
     </div>
   );

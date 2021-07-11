@@ -9,7 +9,7 @@ class Screen extends React.Component{
         super(props)
        console.log(props)
         this.state={
-            name:props.dets.name,
+            user:props.user,
             quote:'',
             author:'',
             momentContext: moment(),
@@ -97,8 +97,9 @@ class Screen extends React.Component{
         //console.log(daysM)
         return(
             <div>
+                <span>Welcome, </span>
                 {
-                    //this.state.name
+                    this.state.user.email
                 }
                 <br />
                 {

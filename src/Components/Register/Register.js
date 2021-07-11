@@ -46,21 +46,18 @@ const Register=({onRouteChange, onUserChange})=> {
                     console.log(user.uid)
                     onUserChange(user)
                     writeUserData(user.uid)
-                        //throw user
-                       
-                    // ...
-                    })
                     
-                    .catch((error) => {
+                    
+                    }).catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.log(error)
                     // ..
                     });
-                    
+                    onRouteChange('Home') 
                     
                     // 
-                    onRouteChange('Home') 
+                    
                     
                 }}
                 className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" type="submit" value="Create Account"/>
