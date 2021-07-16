@@ -18,7 +18,8 @@ class Screen extends React.Component{
             months:moment.months(),
             todayDay: moment().get("date"),
             thisMonth: moment().format("MMMM"),
-            thisYear: moment().format("Y")
+            thisYear: moment().format("Y"),
+            reqdate:moment().get("date")
         }
         
         this.getquotes()
@@ -88,8 +89,16 @@ class Screen extends React.Component{
         let daysM=[]
         for(let i=1;i<=this.daysIMonth();i++)
         {
-            let c=(i===this.curdate() && this.month()===this.state.thisMonth && this.year()===this.state.thisYear)?"day cur-date": "day"
-            daysM.push(<span key={i} className={c} onClick={()=>this.props.reqdatechange(moment(i+"."+this.month()+"."+this.year()).format("DD-MM-YYYY"))}>{i}</span>)
+            let c=(i===this.curdate() && this.month()===this.state.thisMonth && this.year()===this.state.thisYear )?"day cur-date": "day"
+            c+=(this.state.reqdate===i+"-"+this.month()?" active":'')
+            daysM.push(<span key={i} className={c} onClick={()=>{
+                this.props.reqdatechange(moment(i+"."+this.month()+"."+this.year()).format("DD-MM-YYYY"))
+                this.setState({
+                    reqdate:i+"-"+this.month()
+                }, ()=>{
+                   
+                })
+            }}>{i}</span>)
         }
 
         daysM=[...blanks, ...daysM]

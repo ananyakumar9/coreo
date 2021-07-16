@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from '../../Config/firebase'
  const db=firebase.firestore()
  var newlist=[]
+ 
 class ListItem extends React.Component{
   constructor(props)
   {
@@ -12,12 +13,22 @@ class ListItem extends React.Component{
       reqdate:props.requiredDate,
       loaded: false
     }
+    this.getdata()
     
   }
-  componentDidMount(){
+  datemethod(req) {
+    this.setState({ reqdate: req }, ()=>{
+      
+      this.getdata();
+    });
+  }
+
+  
+  getdata(){
     db.collection(this.state.user).where("date", "==", this.state.reqdate)
-    .onSnapshot((querySnapshot) => {
+    .get().then((querySnapshot) => {
         newlist=[]
+        
         querySnapshot.forEach((doc) => {
             var k={
                 id: doc.id,
@@ -25,12 +36,13 @@ class ListItem extends React.Component{
               }
               
               newlist.push(k)
-              this.setState({
-                loaded: true
-              }, ()=>{
-        
-              })
+              
             
+        })
+        this.setState({
+          loaded: true
+        }, ()=>{
+  
         })
         
     })
@@ -42,7 +54,7 @@ class ListItem extends React.Component{
       return(
         <div>
           <div className='w-70 bg-black center h2 br3 ma2'>
-                list items<br />
+                {this.state.reqdate}<br />
                 
                 {
                   newlist.map((doc, index)=>{
@@ -51,6 +63,9 @@ class ListItem extends React.Component{
                       <div>
                         
                         <div key={index}>{doc.title}: {doc.desc}</div>
+                        <button onClick={(e)=>{e.target.nextSibling.classList.toggle("subtask")}}>show subtasks</button>
+                        <p className="subtask">subtask :{doc.subtasks}</p>
+                        <button onClick={()=>{db.collection(this.state.user).doc(doc.id).delete().then(()=>{console.log("deleted"); this.datemethod(this.state.reqdate)})}}>delete</button>
                       </div>
                       
                     )

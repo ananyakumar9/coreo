@@ -25,7 +25,16 @@
 }
 .day:hover{
   cursor: pointer;
+  background-color: rgb(75, 75, 1);
 }
+.active{
+  background-color: rgb(75, 75, 1);
+}
+
+.subtask{
+  display: none;
+}
+
 .cur-date{
   background-color:olive;
   color: white;
