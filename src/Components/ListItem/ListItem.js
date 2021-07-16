@@ -63,7 +63,8 @@ class ListItem extends React.Component{
                       <div>
                         
                         <div key={index}>{doc.title}: {doc.desc}</div>
-                        <button onClick={(e)=>{e.target.nextSibling.classList.toggle("subtask")}}>show subtasks</button>
+                        
+                        <input type="button" value="show subtasks" onClick={(e)=>{e.target.nextSibling.classList.toggle("subtask");e.target.value= e.target.nextSibling.classList.contains("subtask")?"show subtask":"hide subtasks";}} ></input>
                         <p className="subtask">subtask :{doc.subtasks}</p>
                         <button onClick={()=>{db.collection(this.state.user).doc(doc.id).delete().then(()=>{console.log("deleted"); this.datemethod(this.state.reqdate)})}}>delete</button>
                       </div>
