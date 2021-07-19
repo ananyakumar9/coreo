@@ -7,7 +7,7 @@ import moment from 'moment';
  const db=firebase.firestore()
 
  var reqdate=moment().format("DD-MM-YYYY")
-
+var completed=[]
 class Home extends React.Component{
   constructor(props)
   {
@@ -42,11 +42,14 @@ class Home extends React.Component{
             Desc: <input  id="input-field" onChange={(e)=>{this.state.listdets.desc=e.target.value}}/><br />
             Subtasks:<textarea id="input-field" onChange={(e)=>{this.state.listdets.subtasks=e.target.value}}/><br />
             <button onClick={()=>{
+              completed=this.state.listdets.subtasks.split('\n')
+              completed.fill(0);
             db.collection(this.state.user.uid).add({
                 title: this.state.listdets.title,
                 date: reqdate,
                 desc: this.state.listdets.desc,
-                subtasks:  this.state.listdets.subtasks
+                subtasks:  this.state.listdets.subtasks.split('\n'),
+                completed: completed
             }).then(() => {
               console.log("Document successfully written!");
               
