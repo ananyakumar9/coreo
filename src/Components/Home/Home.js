@@ -38,20 +38,23 @@ class Home extends React.Component{
   
 
   render(){
-    
+    var x=this.state.listdets.title;
+    var y=this.state.listdets.desc;
+    var z=this.state.listdets.subtasks;
       return (
         <div>
           <Modal content={pr} ref={this.myModal}/>
           <div className='br2 ba white b--white-10 shadow-5 homeclass'>
           
-          <div className='tl pa3'><Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/></div>
+          <div className='tl pa3'>
+            <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/></div>
           <div>
             <br/>
-            Title: <input id="input-field" onChange={(e)=>{this.state.listdets.title=e.target.value}}/><br />
-            Desc: <input  id="input-field" onChange={(e)=>{this.state.listdets.desc=e.target.value}}/><br />
-            Subtasks:<textarea id="input-field" onChange={(e)=>{this.state.listdets.subtasks=e.target.value}}/><br />
+            Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
+            Desc: <input  id="input-field" onChange={(e)=>{y=e.target.value}}/><br />
+            Subtasks:<textarea id="input-field" onChange={(e)=>{z=e.target.value}}/><br />
             <button onClick={()=>{
-              if(this.state.listdets.title===''||this.state.listdets.desc==='')
+              if(x===''||y==='')
               {
                 pr={
                   color:'red',
@@ -61,13 +64,13 @@ class Home extends React.Component{
                 this.myModal.current.showmodal(pr)
               }
               else{
-                completed=this.state.listdets.subtasks.split('\n')
+                completed=z.split('\n')
               completed.fill(0);
             db.collection(this.state.user.uid).add({
-                title: this.state.listdets.title,
+                title: x,
                 date: reqdate,
-                desc: this.state.listdets.desc,
-                subtasks:  this.state.listdets.subtasks.split('\n'),
+                desc: y,
+                subtasks:  z.split('\n'),
                 completed: completed
             }).then(() => {
               
@@ -93,7 +96,6 @@ class Home extends React.Component{
                   subtasks:''
                 }
               })
-              
           })
           .catch((error) => {
               

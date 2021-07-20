@@ -49,12 +49,7 @@ class ListItem extends React.Component{
         
     })
   }
-  changesubtasks(sub){
-    console.log(sub)
-  }
-  changecompleted(sub){
-    console.log(sub)
-  }
+
   render()
   {
     if(this.state.loaded)
@@ -98,10 +93,6 @@ class ListItem extends React.Component{
           <div>loading</div>
         )
       }
-      
-    
-    
-    
   }
 }
 

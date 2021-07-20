@@ -50,10 +50,13 @@ class Subtask extends React.Component{
               }}/><span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
                         <button onClick={()=>{var c=this.state.subtasks
               c.splice(index, 1)
+              var d=this.state.completed
+              d.splice(index, 1)
               this.setState({
-              subtasks:c
+              subtasks:c,
+              completed:d
             }, ()=>{
-              
+              this.state.changecompleted(this.state.completed)
               this.state.changesubtasks(this.state.subtasks)
             })}}>delete</button>
                         
