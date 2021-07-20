@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import Screen from '../Calendar/Screen';
 import ListItem from '../ListItem/ListItem';
 import './Home.css';
@@ -25,15 +25,21 @@ class Home extends React.Component{
         title:'',
         date: moment().format("DD-MM-YYYY"),
         desc: '',
-        subtasks:''
-      }
-      
-      
+        subtasks:'',
+      },
+      time: new Date()
     }
-    
     this.myRef = React.createRef()
     this.myModal = React.createRef()
     
+  }
+  componentDidMount() {
+    this.update = setInterval(() => {
+        this.setState({ time: new Date() });
+    }, 1 * 1000); 
+  }
+  componentWillUnmount() {
+  clearInterval(this.update);
   }
   
 
@@ -45,9 +51,10 @@ class Home extends React.Component{
         <div>
           <Modal content={pr} ref={this.myModal}/>
           <div className='br2 ba white b--white-10 shadow-5 homeclass'>
-          
           <div className='tl pa3'>
-            <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/></div>
+            <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/>
+            <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
+          </div>
           <div>
             <br/>
             Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
@@ -73,8 +80,6 @@ class Home extends React.Component{
                 subtasks:  z.split('\n'),
                 completed: completed
             }).then(() => {
-              
-               
               this.myRef.current.datemethod(reqdate)
               pr={
                 color:'green',
