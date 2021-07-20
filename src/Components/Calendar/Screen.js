@@ -1,15 +1,21 @@
 import moment from 'moment';
 import React from 'react';
+import firebase from '../../Config/firebase'
+
 
 import './Cal.css'
+const db=firebase.firestore()
 //https://momentjs.com/docs/#/get-set/month/
 class Screen extends React.Component{
     constructor(props)
     {
+        
         super(props)
        console.log(props)
+       
         this.state={
             user:props.user,
+            username:'user',
             quote:'',
             author:'',
             momentContext: moment(),
@@ -22,9 +28,17 @@ class Screen extends React.Component{
             reqdate:moment().get("date")
         }
         
+        
         this.getquotes()
     }
     getquotes=async ()=>{
+        await db.collection(this.state.user.uid).doc('user-data').get().then((querySnapshot) => {
+            
+            
+            this.setState({
+                username:querySnapshot.data().name,
+            })
+        })
         //https://github.com/lukePeavey/quotable#get-random-quote
         await fetch('https://api.quotable.io/random?maxLength=40')
 .then(response => {
@@ -34,7 +48,8 @@ class Screen extends React.Component{
     
     this.setState({
         quote: data.content,
-        author: data.author
+        author: data.author,
+        
 
     })
 })
@@ -108,7 +123,7 @@ class Screen extends React.Component{
             <div>
                 <span>Welcome, </span>
                 {
-                    this.state.user.email
+                    this.state.username
                 }
                 <br />
                 {

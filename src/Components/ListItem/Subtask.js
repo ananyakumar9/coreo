@@ -1,8 +1,5 @@
 import React from 'react';
 
-
- var newlist=[]
- 
 class Subtask extends React.Component{
   constructor(props)
   {
@@ -32,7 +29,7 @@ class Subtask extends React.Component{
     
       return(
         <div>
-          <div className='w-70 bg-black center h2 br3 ma2'>
+          <div className='w-70 bg-black center '>
                 
                 
                 {
