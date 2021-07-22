@@ -6,6 +6,7 @@ import firebase from '../../Config/firebase'
 import moment from 'moment';
 import Modal from '../Modals/Modal'
 import Subtask from '../ListItem/Subtask'
+import DDay from '../DDay/DDay'
  const db=firebase.firestore()
  var pr={
    open:false,
@@ -132,6 +133,8 @@ clearInterval(this.update);
           <Subtask  ref={this.subtaskref} 
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}
           reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}/>
+
+          <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
         </div>
         </div>
         
