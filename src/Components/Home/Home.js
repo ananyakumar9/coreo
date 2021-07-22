@@ -14,6 +14,9 @@ import DDay from '../DDay/DDay'
    color:'green'
  }
  var reqdate=moment().format("DD-MM-YYYY")
+ var x='';
+    var y='';
+    var z='';
 var completed=[]
 class Home extends React.Component{
   constructor(props)
@@ -51,9 +54,7 @@ showsubtask(doc){
   this.subtaskref.current.showsubtask(doc, this.state.user);
 }
   render(){
-    var x=this.state.listdets.title;
-    var y=this.state.listdets.desc;
-    var z=this.state.listdets.subtasks;
+    
       return (
         <div>
           <Modal content={pr} ref={this.myModal}/>
