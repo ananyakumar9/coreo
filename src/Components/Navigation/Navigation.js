@@ -21,7 +21,13 @@ const Navigation=({onRouteChange,route})=> {
     className='pa2 ma2 f4 link dim underline'>delete acc</p>
           
           <p  
-    onClick={()=>{onRouteChange('SignIn');}}
+    onClick={()=>{
+      firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        onRouteChange('SignIn');
+      }).catch((error) => {
+        // An error happened.
+      });}}
     className='pa2 ma2 f4 link dim underline'>Sign out</p>
           </div>
           
