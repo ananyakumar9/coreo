@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import Screen from '../Calendar/Screen';
 import ListItem from '../ListItem/ListItem';
 import './Home.css';
@@ -28,7 +28,6 @@ class Home extends React.Component{
         date: moment().format("DD-MM-YYYY"),
         desc: '',
         subtasks:'',
-        
       },
       time: new Date()
       
@@ -39,17 +38,17 @@ class Home extends React.Component{
     this.subtaskref = React.createRef();
     
   }
+  componentDidMount() {
+    this.update = setInterval(() => {
+        this.setState({ time: new Date() });
+    }, 1 * 1000); 
+  }
+  componentWillUnmount() {
+  clearInterval(this.update);
+  }
   
 showsubtask(doc){
   this.subtaskref.current.showsubtask(doc, this.state.user);
-}
-componentDidMount() {
-  this.update = setInterval(() => {
-      this.setState({ time: new Date() });
-  }, 1 * 1000); 
-}
-componentWillUnmount() {
-clearInterval(this.update);
 }
   render(){
     var x=this.state.listdets.title;
@@ -59,10 +58,11 @@ clearInterval(this.update);
         <div>
           <Modal content={pr} ref={this.myModal}/>
           <div className='br2 ba white b--white-10 shadow-5 homeclass'>
-          
           <div className='tl pa3'>
-            <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/></div>
+            <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/>
             <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
+          </div>
+
           <div>
             <br/>
             Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
@@ -88,8 +88,6 @@ clearInterval(this.update);
                 subtasks:  z.split('\n'),
                 completed: completed
             }).then(() => {
-              
-               
               this.myRef.current.datemethod(reqdate)
               pr={
                 color:'green',
