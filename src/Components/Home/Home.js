@@ -5,6 +5,7 @@ import './Home.css';
 import firebase from '../../Config/firebase'
 import moment from 'moment';
 import Modal from '../Modals/Modal'
+import Subtask from '../ListItem/Subtask'
  const db=firebase.firestore()
  var pr={
    open:false,
@@ -17,26 +18,38 @@ class Home extends React.Component{
   constructor(props)
   {
     super(props)
-    console.log(props)
-    console.log(reqdate)
+    console.log(props);
+    console.log(reqdate);
     this.state={
       user:props.user,
       listdets:{
         title:'',
         date: moment().format("DD-MM-YYYY"),
         desc: '',
-        subtasks:''
-      }
-      
+        subtasks:'',
+        
+      },
+      time: new Date()
       
     }
     
-    this.myRef = React.createRef()
-    this.myModal = React.createRef()
+    this.myRef = React.createRef();
+    this.myModal = React.createRef();
+    this.subtaskref = React.createRef();
     
   }
   
-
+showsubtask(doc){
+  this.subtaskref.current.showsubtask(doc, this.state.user);
+}
+componentDidMount() {
+  this.update = setInterval(() => {
+      this.setState({ time: new Date() });
+  }, 1 * 1000); 
+}
+componentWillUnmount() {
+clearInterval(this.update);
+}
   render(){
     var x=this.state.listdets.title;
     var y=this.state.listdets.desc;
@@ -48,6 +61,7 @@ class Home extends React.Component{
           
           <div className='tl pa3'>
             <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/></div>
+            <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
           <div>
             <br/>
             Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
@@ -61,7 +75,7 @@ class Home extends React.Component{
                   msg:"Title or content cannot be left blank",
                   open:true,
                 }
-                this.myModal.current.showmodal(pr)
+                this.myModal.current.showmodal(pr);
               }
               else{
                 completed=z.split('\n')
@@ -112,8 +126,12 @@ class Home extends React.Component{
             <br />
             <br />
             
-            <ListItem user={this.state.user.uid} requiredDate={reqdate} ref={this.myRef}/>
+            <ListItem user={this.state.user.uid} requiredDate={reqdate} ref={this.myRef} showsubtask={(doc)=>{this.showsubtask(doc)}}/>
+           
           </div>
+          <Subtask  ref={this.subtaskref} 
+          showmodal={(p)=>{this.myModal.current.showmodal(p)}}
+          reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}/>
         </div>
         </div>
         

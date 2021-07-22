@@ -1,23 +1,28 @@
 import React from 'react';
+import firebase from '../../Config/firebase'
 
+var z=''; var pr;
+ const db=firebase.firestore()
 class Subtask extends React.Component{
   constructor(props)
   {
     super(props)
     console.log(props)
     this.state={
-      subtasks:props.subtasks,
-      completed:props.completed,
-      changecompleted: props.changecompleted,
-      changesubtasks: props.changesubtasks
+      user:'',
+      task:'',
+      subtasks:'',
+      completed:'',
+      reqdatechange:props.reqdatechange,
+      showmodal:props.showmodal
       
     }
     
     
   }
-  subtaskmethod(req) {
-    this.setState({ subtasks: req.subtasks, completed:req.completed }, ()=>{
-      
+  showsubtask(req, user) {
+    this.setState({user:user, task:req, subtasks:req.subtasks, completed:req.completed }, ()=>{
+      console.log(this.state.task)
       
     });
   }
@@ -26,49 +31,130 @@ class Subtask extends React.Component{
  
   render()
   {
-    
-      return(
-        <div>
-          <div className='w-70 bg-black center '>
-                
-                
-                {
-                  this.state.subtasks.map((doc, index)=>{
+    if(this.state.task!='')
+        {
+          return(
+        
+            <div>
+              <div className='w-70 bg-black center '>
+                    {this.state.task.title}<br />
+                    {this.state.task.date}<br />
+                    {this.state.task.desc}<br />
                     
-                    return(
-                      <div>
+                    {
+                      this.state.subtasks.map((doc, index)=>{
                         
-                        <input type="checkbox" key={index} checked={this.state.completed[index]}
-            onChange={()=>{var c=this.state.completed
-              c[index]=!c[index]
-              this.setState({
-              completed:c
-            }, ()=>{
-              
-              this.state.changecompleted(this.state.completed)
-            })
-              }}/><span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
-                        <button onClick={()=>{var c=this.state.subtasks
-              c.splice(index, 1)
-              var d=this.state.completed
-              d.splice(index, 1)
-              this.setState({
-              subtasks:c,
-              completed:d
-            }, ()=>{
-              this.state.changecompleted(this.state.completed)
-              this.state.changesubtasks(this.state.subtasks)
-            })}}>delete</button>
-                        
-                      </div>
-                      
-                    )
-                  })
+                        return(
+                          <div>
+                            
+                            <input type="checkbox" key={index} checked={this.state.completed[index]}
+                              onChange={()=>{
+                                var c=this.state.completed
+                                c[index]=!c[index]
+                                this.setState({
+                                completed:c
+                              },  ()=>{
+                                
+                               db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                                  ...this.state.task,
+                                  
+                                  completed:this.state.completed
+                                })
+                              })
+                                }}/>
+                                <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
+                                
+                                
+                                
+                                
+                                <button onClick={()=>{
+                                    var c=this.state.subtasks
+                                    c.splice(index, 1)
+                                    var d=this.state.completed
+                                    d.splice(index, 1)
+                                    this.setState({
+                                    subtasks:c,
+                                    completed:d
+                              }, ()=>{
+                                     db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                                        ...this.state.task,
+                                        completed: this.state.completed
+                                      })
+                              })}}>delete</button>
+
+
+                            
+                            </div>
+                          
+                        )
+                      }
+                      )
+                    }
+
+                    Subtasks:<textarea id="input-field" onChange={(e)=>{z=e.target.value}}/><br />
+                    <button onClick={()=>{
+              if(z==='')
+              {
+                pr={
+                  color:'red',
+                  msg:"Subtask cannot be left blank",
+                  open:true,
                 }
+                this.state.showmodal(pr)
+              }
+              else{
+                var s=this.state.subtasks;
+                s.push(z);
+                var c=this.state.completed;
+                c.push(0);
+                db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                  ...this.state.task,
+                  subtasks: s,
+                  completed: c
+                }).then(() => {
+              
+               Array.from(document.querySelectorAll("textarea")).forEach(
+                input => (input.value = "")
+              );
+              z=''
+              this.setState({
+                subtasks:s,
+                completed:c
+              }, ()=>{
+
+              })
+              
+          })
+          .catch((error) => {
+              
+              console.log(error);
+          });
+              }
+              
+          }}>new subtask</button>
+            <br />
+            <br />
+                    <button onClick={()=>{
+                              
+                              db.collection(this.state.user.uid).doc(this.state.task.id).delete().then(()=>{console.log("deleted"); this.state.reqdatechange(); this.setState({
+                                task:''
+                              }, ()=>{
+                                
+                              })})}
+                              }>delete</button>
+                </div>
             </div>
-        </div>
-      )
-             
+          )
+                 
+        }
+        else{
+          return(
+            <div className="nonedisplay">
+
+            </div>
+          )
+        }
+      
       
     
     
