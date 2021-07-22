@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from '../../Config/firebase'
-import Subtask from './Subtask'
+
 
  const db=firebase.firestore()
  var newlist=[]
@@ -13,7 +13,8 @@ class ListItem extends React.Component{
     this.state={
       user:props.user,
       reqdate:props.requiredDate,
-      loaded: false
+      loaded: false,
+      showsubtask: props.showsubtask
     }
     this.getdata()
     
@@ -44,7 +45,7 @@ class ListItem extends React.Component{
         this.setState({
           loaded: true
         }, ()=>{
-  
+          console.log(newlist);
         })
         
     })
@@ -65,21 +66,8 @@ class ListItem extends React.Component{
                     return(
                       <div>
                         
-                        <div key={index}>{doc.title}: {doc.desc}</div>
-                        
-                        <input type="button" value="show subtasks" onClick={(e)=>{e.target.nextSibling.classList.toggle("subtask");e.target.value= e.target.nextSibling.classList.contains("subtask")?"show subtask":"hide subtasks";}} ></input>
-                        <div className="subtask">
-                        <Subtask subtasks={doc.subtasks} completed={doc.completed} changesubtasks={(subtasks)=>{db.collection(this.state.user).doc(doc.id).set({
-                          ...doc,
-                          subtasks: subtasks
-                        })}} changecompleted={(completed)=>{db.collection(this.state.user).doc(doc.id).set({
-                          ...doc,
-                          completed: completed
-                        })}}>{doc.subtasks}</Subtask>
+                        <button onClick={()=>{this.state.showsubtask(doc)}} key={index}>{doc.title}</button>
                         </div>
-                        
-                        <button onClick={()=>{db.collection(this.state.user).doc(doc.id).delete().then(()=>{console.log("deleted"); this.datemethod(this.state.reqdate)})}}>delete</button>
-                      </div>
                       
                     )
                   })
