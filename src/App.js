@@ -3,6 +3,7 @@ import SignIn from './Components/SignIn/SignIn';
 import Register from './Components/Register/Register'; 
 import Home from './Components/Home/Home';
 import Navigation from './Components/Navigation/Navigation';
+import Settings from './Components/Settings/Settings'
 import './App.css';
 
 class App extends Component{
@@ -29,6 +30,8 @@ onUserChange=(user)=>{
       <SignIn onRouteChange={this.onRouteChange} onUserChange={this.onUserChange}/>
       :this.state.route==='Register'?
       <Register onRouteChange={this.onRouteChange} onUserChange={this.onUserChange}/>:
+      this.state.route==='Settings'?
+      <Settings onRouteChange={this.onRouteChange} user={this.state.user}/>:
       
         !this.state.user==0?
       
