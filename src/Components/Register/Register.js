@@ -10,11 +10,21 @@ var newday=[{
     date:"31-07-2022"
 }]
 async function writeUserData(userId) {
-    
+    const user = firebase.auth().currentUser;
+
+        user.updateProfile({
+        displayName: newuser.name,
+        
+        }).then(() => {
+        // Update successful
+        // ...
+        }).catch((error) => {
+        // An error occurred
+        // ...
+        });  
     await firebase.firestore().collection(userId).doc("user-data").set({
       username: newuser.name,
-      email: newuser.email,
-      name: newuser.name
+      
     });
     
     await firebase.firestore().collection(userId).doc("d-day").set({
