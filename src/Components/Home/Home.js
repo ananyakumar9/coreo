@@ -135,7 +135,7 @@ clearInterval(this.update);
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}
           reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}/>
 
-          <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
+          <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>
         </div>
         </div>
         

@@ -24,7 +24,8 @@ class Settings extends React.Component{
    
       return (
         <div>
-          settings<br />
+          <button onClick={()=>this.state.onRouteChange('Home')}>back</button><br />
+          email:{firebase.auth().currentUser.email}
           <p  
     onClick={()=>{const user = firebase.auth().currentUser;
 

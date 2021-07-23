@@ -5,13 +5,24 @@ var newuser={
     email:'',
     pass:''
 }
+var newday=[{
+    title:"demo",
+    date:"31-07-2022"
+}]
 async function writeUserData(userId) {
-    console.log("in")
+    
     await firebase.firestore().collection(userId).doc("user-data").set({
       username: newuser.name,
       email: newuser.email,
       name: newuser.name
     });
+    
+    await firebase.firestore().collection(userId).doc("d-day").set({
+        user: userId,
+        dday:newday
+      });
+
+      return 0;
   }
  
 const Register=({onRouteChange, onUserChange})=> {
