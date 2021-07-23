@@ -7,13 +7,11 @@ const Navigation=({onRouteChange,route})=> {
         <div><p className='pa2 f1 ma2 b'>Coreo</p></div>
         {route==='Home' || route==='Settings'?
         <div>
-          
-          
-          
           <p  
     onClick={()=>{
       firebase.auth().signOut().then(() => {
         // Sign-out successful.
+        window.location.reload(true);
         onRouteChange('SignIn');
       }).catch((error) => {
         // An error happened.

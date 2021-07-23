@@ -21,9 +21,8 @@ var completed=[]
 class Home extends React.Component{
   constructor(props)
   {
+    
     super(props)
-    console.log(props);
-    console.log(reqdate);
     this.state={
       user:props.user,
       listdets:{
@@ -133,7 +132,7 @@ showsubtask(doc){
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}
           reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}/>
 
-          <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
+          <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>
         </div>
         </div>
         
