@@ -5,6 +5,7 @@ import firebase from '../../Config/firebase'
 
 import './Cal.css'
 const db=firebase.firestore()
+var k;
 //https://momentjs.com/docs/#/get-set/month/
 class Screen extends React.Component{
     constructor(props)
@@ -92,6 +93,16 @@ class Screen extends React.Component{
             
         })
     }
+    handlechangeyear=(e)=>{
+        
+    
+        this.setState({
+            momentContext:moment(this.state.momentContext).set('year', e.target.value)
+
+        }, ()=>{
+            
+        })
+    }
     
     render(){
         let blanks=[]
@@ -146,12 +157,33 @@ class Screen extends React.Component{
                     {this.month()}
                         <select className="months-popup" onChange={this.handlechange} value={this.month()}>
                             
+                            
                         {
                             
                             this.state.months.map((data)=>{
                                 return (
                                     <option value={data}>
                                         {data}
+
+                                    </option>
+                                )
+                            })
+                            
+                        }
+                        </select>
+
+
+                        {this.year()}
+                        <select className="months-popup" onChange={this.handlechangeyear} value={this.year()}>
+                            
+                            
+                        {
+                            
+                            this.state.months.map((data, index)=>{
+                                k=parseInt(this.year())
+                                return (
+                                    <option value={k+index}>
+                                        {k+index}
 
                                     </option>
                                 )
