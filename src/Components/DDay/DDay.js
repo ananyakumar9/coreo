@@ -19,7 +19,9 @@ class DDay extends React.Component{
             dday:[],
             loaded:false,
         }
-        this.getdata();
+
+        
+            this.getdata();
     }
     getdata(){
         db.collection(this.state.user).doc("d-day")
@@ -27,7 +29,7 @@ class DDay extends React.Component{
             
             
             
-            if(querySnapshot.data()=='undefined')
+            if(querySnapshot.data()=='undefined' || querySnapshot.exists==false)
             {
                 
                 this.setState({
@@ -36,9 +38,10 @@ class DDay extends React.Component{
                     this.getdata();
                 });
             }
-        
+            else{
+                console.log(querySnapshot.data())
                 newlist=querySnapshot.data().dday;
-                
+            }
                 
             
             this.setState({

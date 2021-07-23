@@ -31,6 +31,7 @@ class Settings extends React.Component{
 
     user.delete().then(() => {
       // User deleted.
+      window.location.reload(true);
       this.state.onRouteChange('SignIn');
     }).catch((error) => {
       // An error ocurred
