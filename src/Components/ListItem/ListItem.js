@@ -9,7 +9,7 @@ class ListItem extends React.Component{
   constructor(props)
   {
     super(props)
-    console.log(props)
+    
     this.state={
       user:props.user,
       reqdate:props.requiredDate,
@@ -45,7 +45,7 @@ class ListItem extends React.Component{
         this.setState({
           loaded: true
         }, ()=>{
-          console.log(newlist);
+          
         })
         
     })

@@ -23,8 +23,6 @@ class Home extends React.Component{
   {
     
     super(props)
-    console.log(props);
-    console.log(reqdate);
     this.state={
       user:props.user,
       listdets:{

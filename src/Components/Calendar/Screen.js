@@ -11,7 +11,7 @@ class Screen extends React.Component{
     {
         
         super(props)
-       console.log(props)
+       
        
         this.state={
             user:props.user,
@@ -89,7 +89,7 @@ class Screen extends React.Component{
 
         }, ()=>{
             
-            console.log(this.daysIMonth())
+            
         })
     }
     

@@ -39,7 +39,7 @@ class DDay extends React.Component{
                 });
             }
             else{
-                console.log(querySnapshot.data())
+                
                 newlist=querySnapshot.data().dday;
             }
                 

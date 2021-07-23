@@ -7,7 +7,7 @@ class Subtask extends React.Component{
   constructor(props)
   {
     super(props)
-    console.log(props)
+    
     this.state={
       user:'',
       task:'',
@@ -22,7 +22,6 @@ class Subtask extends React.Component{
   }
   showsubtask(req, user) {
     this.setState({user:user, task:req, subtasks:req.subtasks, completed:req.completed }, ()=>{
-      console.log(this.state.task)
       
     });
   }
@@ -137,7 +136,7 @@ class Subtask extends React.Component{
             <br />
                     <button onClick={()=>{
                               
-                              db.collection(this.state.user.uid).doc(this.state.task.id).delete().then(()=>{console.log("deleted"); this.state.reqdatechange(); this.setState({
+                              db.collection(this.state.user.uid).doc(this.state.task.id).delete().then(()=>{ this.state.reqdatechange(); this.setState({
                                 task:''
                               }, ()=>{
                                 
