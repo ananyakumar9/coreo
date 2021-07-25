@@ -111,24 +111,22 @@ class Subtask extends React.Component{
                   ...this.state.task,
                   subtasks: s,
                   completed: c
-                }).then(() => {
-              
-               Array.from(document.querySelectorAll("textarea")).forEach(
-                input => (input.value = "")
-              );
-              z=''
-              this.setState({
-                subtasks:s,
-                completed:c
-              }, ()=>{
+                })
+                .then(() => {
+                  Array.from(document.querySelectorAll("textarea"))
+                  .forEach(input => (input.value = ""));
+                  z='';
+                  this.setState({
+                  subtasks:s,
+                  completed:c
+                  }, ()=>{
 
-              })
-              
-          })
-          .catch((error) => {
-              
-              console.log(error);
-          });
+                    })  
+                })
+                .catch((error) => {
+                    
+                    console.log(error);
+                });
               }
               
           }}>new subtask</button>

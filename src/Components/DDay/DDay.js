@@ -8,7 +8,7 @@ const db=firebase.firestore()
 
 var x='',y='';
 var pr;
-var newlist=[]
+var newlist=[];
 class DDay extends React.Component{
     constructor(props)
     {
@@ -80,7 +80,7 @@ class DDay extends React.Component{
                             date: y,
 
                                 };
-                        newlist.push(newd);
+                            newlist.push(newd);
                             db.collection(this.state.user).doc("d-day").set({
                                 dday:newlist,
                             }).then(() => {
@@ -128,7 +128,7 @@ class DDay extends React.Component{
                     
                     return(
                         <div>
-                            {index+1}) {doc.title}:{doc.date}<br/>
+                            {index+1} {doc.title}:{doc.date}<br/>
                             {
                                 dateDiff>=0?
                                 <div className="green">

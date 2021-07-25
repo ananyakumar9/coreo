@@ -35,28 +35,25 @@ class Screen extends React.Component{
     getquotes=async ()=>{
         await db.collection(this.state.user.uid).doc('user-data').get().then((querySnapshot) => {
             
-            
             this.setState({
                 username:querySnapshot.data().name,
             })
         })
         //https://github.com/lukePeavey/quotable#get-random-quote
         await fetch('https://api.quotable.io/random?maxLength=40')
-.then(response => {
-    
-	return(response.json());
-}).then(data=>{
-    
-    this.setState({
-        quote: data.content,
-        author: data.author,
-        
-
-    })
-})
-.catch(err => {
-	console.error(err);
-})
+        .then(response => {
+            
+            return(response.json());
+        }).then(data=>{
+            
+            this.setState({
+                quote: data.content,
+                author: data.author
+            })
+        })
+        .catch(err => {
+            console.error(err);
+        })
     }
 
     year=()=>{
@@ -83,8 +80,6 @@ class Screen extends React.Component{
     }
 
     handlechange=(e)=>{
-        
-    
         this.setState({
             momentContext:moment(this.state.momentContext).set('month', this.state.months.indexOf(e.target.value))
 
@@ -180,7 +175,7 @@ class Screen extends React.Component{
                         {
                             
                             this.state.months.map((data, index)=>{
-                                k=parseInt(this.year())
+                                k=parseInt(this.state.thisYear)
                                 return (
                                     <option value={k+index}>
                                         {k+index}
