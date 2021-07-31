@@ -1,8 +1,14 @@
-.grid{
+.grid1{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(440px,1fr));
     grid-template-rows: 1fr;
     grid-gap: 10px;
+}
+.grid2{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(293px,1fr));
+  grid-template-rows: 1fr;
+  grid-gap: 10px;
 }
 *::-webkit-scrollbar {
     width: 0;
@@ -29,7 +35,7 @@
   .carousel__viewport {
     display: flex;
     height: 500px;
-    overflow-x: scroll;
+    overflow-x: hidden;
     counter-reset: item;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
@@ -57,13 +63,7 @@
     margin: 250px 0 0 -25px;
    display: block;
 }
-  
-#slide1:checked ~ .carousel__viewport {
-    margin-left: 0;
- }
- #slide2:checked ~.carousel__viewport {
-    margin-left: -100%;
- }
+
  ol, li {
     list-style: none;
     margin: 0;
@@ -71,7 +71,7 @@
   }
 
 .slidebutton{
-    display: inline-block;
+  display: inline-block;
   width: 1.5rem;
   height: 1.5rem;
   background-color: black;
@@ -86,4 +86,8 @@
 }
 ul{
     margin:-40px 0 0 0;
+}
+
+.isDisabled{
+  pointer-events: none;
 }

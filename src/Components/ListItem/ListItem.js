@@ -66,7 +66,7 @@ class ListItem extends React.Component{
                     return(
                       <div>
                         
-                        <button onClick={()=>{this.state.showsubtask(doc)}} key={index}>{doc.title}</button>
+                        <a href="#carousel__slide2"><button onClick={()=>{this.state.showsubtask(doc);this.props.updateSlide(true);}} key={index}>{doc.title}</button></a>
                         </div>
                       
                     )

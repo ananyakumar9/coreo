@@ -17,8 +17,7 @@ import DDay from '../DDay/DDay';
  var x='';
     var y='';
     var z='';
-    var slide='';
-var completed=[]
+var completed=[];
 class Home extends React.Component{
   constructor(props)
   {
@@ -32,14 +31,15 @@ class Home extends React.Component{
         desc: '',
         subtasks:''
       },
+      slide:false,
       time: new Date()
     }
-    
     this.myRef = React.createRef();
     this.myModal = React.createRef();
     this.subtaskref = React.createRef();
     
   }
+  updateSlide=(s)=>{this.setState({slide:s})}
   componentDidMount() {
     this.update = setInterval(() => {
         this.setState({ time: new Date() });
@@ -52,15 +52,6 @@ class Home extends React.Component{
 showsubtask(doc){
   this.subtaskref.current.showsubtask(doc, this.state.user);
 }
-imgclick=()=>{
-  if(slide===true)
-  {
-    slide=false;
-  }
-  else{
-    slide=true;
-  }
-}
   render(){
     
       return (
@@ -69,17 +60,20 @@ imgclick=()=>{
           <Modal content={pr} ref={this.myModal}/>
           <div className='br2 h-500px ba white b--white-10 shadow-5 carousel'>
 
-           
-          <a href="#carousel__slide2">  
-          <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right" onClick={this.imgclick}/>
+           {this.state.slide?
+          <a href="#carousel__slide2" >  
+          <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
+          </a>:
+          <a href="#carousel__slide2" className="isDisabled">  
+          <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
           </a>
-          
-          <a href="#carousel__slide1">
-          <img src={"https://image.flaticon.com/icons/svg/130/130882.svg"} alt="hell" id="left" onClick={this.imgclick}/>
+           }
+          <a href="#carousel__slide1" onClick={()=>{this.updateSlide(false)}}>
+          <img src={"https://image.flaticon.com/icons/svg/130/130882.svg"} alt="hell" id="left"/>
           </a>
 
           <ol className="carousel__viewport ml-0">
-            <li className="carousel__slide grid " id="carousel__slide1">
+            <li className="carousel__slide grid1" id="carousel__slide1">
               
             <div className='tl pa2 yflow ba'>
               <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/>
@@ -147,26 +141,35 @@ imgclick=()=>{
             <br />
             <br />
             
-            <ListItem user={this.state.user.uid} requiredDate={reqdate} ref={this.myRef} showsubtask={(doc)=>{this.showsubtask(doc)}}/>
+            <ListItem user={this.state.user.uid}
+            requiredDate={reqdate} ref={this.myRef} 
+            showsubtask={(doc)=>{this.showsubtask(doc)}} 
+            updateSlide={this.updateSlide}/>
            
           </div>
           </li>
-         <li className="carousel__slide grid" id="carousel__slide2">
-          <div className="yflow ba ma2">
+         <li className="carousel__slide grid2" id="carousel__slide2">
+          <div className="yflow ba ma1">
            <Subtask  ref={this.subtaskref} 
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}
           reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}/>
          </div>
-         <div className="yflow ba ma2">
+         <div className="yflow ba ma1">
           <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>
+          </div>
+          <div className="yflow ba ma1">
+          {/*<DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>*/}
           </div>
          </li>
         </ol>
         </div>
         <div>
           <ul>
-            <li className="slideitems pa3"><a href="#carousel__slide1" className="slidebutton" onClick={this.imgclick}>slide1</a></li>
-            <li className="slideitems pa3"><a href="#carousel__slide2" className="slidebutton" onClick={this.imgclick}>slide2</a></li>
+            <li className="slideitems pa3"><a href="#carousel__slide1" className="slidebutton" onClick={()=>{this.updateSlide(false)}}>slide1</a></li>
+            {this.state.slide?
+              <li className="slideitems pa3"><a href="#carousel__slide2" className="slidebutton" >slide2</a></li>:
+              <li className="slideitems pa3"><a href="#carousel__slide2" className="slidebutton isDisabled" >slide2</a></li>
+            }
           </ul>
           </div>
         </div>
