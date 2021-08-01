@@ -2,7 +2,7 @@ import React from 'react';
 
 import Modal from '../Modals/Modal'
 import firebase from '../../Config/firebase'
-
+import './settings.css'
 
 
 var x='', y='', z, newPassword, pr={
@@ -37,9 +37,9 @@ class Settings extends React.Component{
   render(){
    
       return (
-        <div>
+        <div className="settings">
           <button onClick={()=>this.state.onRouteChange('Home')}>back</button><br /><br />
-          <img src={this.state.photo} width='20%'></img><br />
+          <img src={this.state.photo} ></img><br />
           <Modal ref={this.modalref} content={pr} />
           
           email:{this.state.user.email}<br />
@@ -68,7 +68,12 @@ class Settings extends React.Component{
                             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                             console.log('Upload is ' + progress + '% done');
-                            
+                            pr={
+                              color:'blue',
+                              msg:'Upload is ' + progress + '% done',
+                              open:true
+                            };
+                            this.modalref.current.showmodal(pr);
                             switch (snapshot.state) {
                               case firebase.storage.TaskState.PAUSED: // or 'paused'
                                 console.log('Upload is paused');

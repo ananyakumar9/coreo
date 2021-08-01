@@ -39,7 +39,10 @@
     background-color: red;
     
 }
-
+.blue{
+    color:white !important;
+    background-color: rgb(0, 0, 255);
+}
 
 @keyframes slideIn {
     from {top: -300px; opacity: 0} 
