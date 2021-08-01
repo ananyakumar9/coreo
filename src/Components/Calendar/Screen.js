@@ -5,7 +5,7 @@ import firebase from '../../Config/firebase'
 
 import './Cal.css'
 const db=firebase.firestore()
-var k;
+var k, newlist=[];
 //https://momentjs.com/docs/#/get-set/month/
 class Screen extends React.Component{
     constructor(props)
@@ -26,12 +26,43 @@ class Screen extends React.Component{
             todayDay: moment().get("date"),
             thisMonth: moment().format("MMMM"),
             thisYear: moment().format("Y"),
-            reqdate:moment().get("date")
+            reqdate:moment().get("date"),
+            time: new Date()
         }
         
         
         this.getquotes()
+        this.getdata()
     }
+    getdata(){
+        db.collection(this.state.user.uid).doc("d-day")
+        .get().then((querySnapshot) => {
+            
+            
+            
+            if(querySnapshot.data()=='undefined' || querySnapshot.exists==false)
+            {
+                
+                this.setState({
+                    loaded:false
+                }, ()=>{
+                    this.getdata();
+                });
+            }
+            else{
+                
+                newlist=querySnapshot.data().dday;
+            }
+                
+            
+            this.setState({
+                loaded: true
+            }, ()=>{
+               
+            })
+            
+        })
+      }
     getquotes=async ()=>{
         await db.collection(this.state.user.uid).doc('user-data').get().then((querySnapshot) => {
             
@@ -98,7 +129,14 @@ class Screen extends React.Component{
             
         })
     }
-    
+    componentDidMount() {
+        this.update = setInterval(() => {
+            this.setState({ time: new Date() });
+        }, 1 * 1000); 
+      }
+      componentWillUnmount() {
+      clearInterval(this.update);
+      }
     render(){
         let blanks=[]
         
@@ -212,6 +250,20 @@ class Screen extends React.Component{
                         }
                         </div>
                     </div>
+                    <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
+                    <center>
+                        {
+                            newlist.length>0?
+                            <div>
+                            {newlist[0].date}:{newlist[0].title}
+    
+                            </div>
+                            :'no recent ddays'
+
+                        }
+                        
+                  
+                </center>
                 </div>
             </div>
         )

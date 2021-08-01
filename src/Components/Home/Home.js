@@ -32,7 +32,7 @@ class Home extends React.Component{
       },
       slide:false,
       switch:false,
-      time: new Date()
+      
     }
     this.myRef = React.createRef();
     this.myModal = React.createRef();
@@ -41,24 +41,19 @@ class Home extends React.Component{
   }
   updateSwitch=(s)=>{this.setState({switch:s})}
   updateSlide=(s)=>{this.setState({slide:s})}
-  componentDidMount() {
-    this.update = setInterval(() => {
-        this.setState({ time: new Date() });
-    }, 1 * 1000); 
-  }
-  componentWillUnmount() {
-  clearInterval(this.update);
-  }
+
   
 showsubtask(doc){
   this.subtaskref.current.showsubtask(doc, this.state.user);
 }
+
   render(){
     return (
         <div>
+          <Modal content={pr} ref={this.myModal}/>
           {!this.state.switch?
           <div>
-          <Modal content={pr} ref={this.myModal}/>
+          
           <div className='br2 h-500px ba white b--white-10 shadow-5 carousel'>
           
            {/*this.state.slide?
@@ -85,8 +80,11 @@ showsubtask(doc){
               
             <div className='tl pa2 yflow ba'>
               <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/>
-              <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
-              <center><p className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
+              
+              <center>
+               
+                
+                <p className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
               onClick={()=>{this.updateSwitch(true)}}
               >Calendar Event Display</p></center>
             </div>
