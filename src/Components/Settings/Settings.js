@@ -54,9 +54,9 @@ class Settings extends React.Component{
               if(file!=0)
               {
                 
-                var storageRef = firebase.storage().ref('profilePictures/' )
+                var storageRef = firebase.storage().ref('profilePictures/' +this.state.user.uid+'/'+file.name)
                 
-                var uploadTask = storageRef.child(this.state.user.uid).put(file);
+                var uploadTask = storageRef.put(file);
                 uploadTask.on('state_changed', 
                           (snapshot) => {
                             // Observe state change events such as progress, pause, and resume
