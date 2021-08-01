@@ -25,6 +25,11 @@ class Settings extends React.Component{
     y=this.state.user.photoURL;
     z=this.state.user.email;
     this.modalref=React.createRef()
+    pr={
+      open:false,
+      msg:'null',
+      color:'red'
+    };
   }
   
 
