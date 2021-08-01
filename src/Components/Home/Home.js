@@ -15,13 +15,12 @@ import DDay from '../DDay/DDay';
  }
  var reqdate=moment().format("DD-MM-YYYY")
  var x='';
-    var y='';
-    var z='';
+ var y='';
+ var z='';
 var completed=[];
 class Home extends React.Component{
   constructor(props)
   {
-    
     super(props)
     this.state={
       user:props.user,
@@ -32,6 +31,7 @@ class Home extends React.Component{
         subtasks:''
       },
       slide:false,
+      switch:false,
       time: new Date()
     }
     this.myRef = React.createRef();
@@ -39,6 +39,7 @@ class Home extends React.Component{
     this.subtaskref = React.createRef();
     
   }
+  updateSwitch=(s)=>{this.setState({switch:s})}
   updateSlide=(s)=>{this.setState({slide:s})}
   componentDidMount() {
     this.update = setInterval(() => {
@@ -53,13 +54,13 @@ showsubtask(doc){
   this.subtaskref.current.showsubtask(doc, this.state.user);
 }
   render(){
-    
-      return (
+    return (
         <div>
-          
+          {!this.state.switch?
+          <div>
           <Modal content={pr} ref={this.myModal}/>
           <div className='br2 h-500px ba white b--white-10 shadow-5 carousel'>
-
+          
            {this.state.slide?
           <a href="#carousel__slide2" >  
           <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
@@ -78,6 +79,9 @@ showsubtask(doc){
             <div className='tl pa2 yflow ba'>
               <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/>
               <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
+              <center><p className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
+              onClick={()=>{this.updateSwitch(true)}}
+              >Calendar Event Display</p></center>
             </div>
           <div className="yflow ba">
             <br/>
@@ -152,10 +156,12 @@ showsubtask(doc){
           <div className="yflow ba ma1">
            <Subtask  ref={this.subtaskref} 
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}
-          reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}/>
+          reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}
+          updateSlide={this.updateSlide}
+          />
          </div>
          <div className="yflow ba ma1">
-          <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>
+          {/*<DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>*/}
           </div>
           <div className="yflow ba ma1">
           {/*<DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>*/}
@@ -172,10 +178,17 @@ showsubtask(doc){
             }
           </ul>
           </div>
+          </div>
+          :
+          <div className='br2 ba white b--white-10 shadow-5 ma3'>
+          <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}} updateSwitch={this.updateSwitch} user={this.state.user.uid}/>
+          </div>
+          }
         </div>
         
       );
     }
+  
     
   }
   

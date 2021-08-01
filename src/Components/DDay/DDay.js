@@ -58,6 +58,7 @@ class DDay extends React.Component{
         return(
             
             <div>
+                <div className="tl"><button onClick={()=>{this.props.updateSwitch(false)}}>close</button></div>
                     dday details<br />
                     Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
                     

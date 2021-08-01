@@ -34,8 +34,7 @@ class Subtask extends React.Component{
         {
           return(
         
-            <div>
-              <button onClick={()=>{this.setState({task:''}, ()=>{})}}>close</button>
+            <div><div className="tl"><a href="#carousel__slide1"><button onClick={()=>{this.setState({task:''}, ()=>{})}}>close</button></a></div>
               <div className='w-70 bg-black center '>
                     {this.state.task.title}<br />
                     {this.state.task.date}<br />
