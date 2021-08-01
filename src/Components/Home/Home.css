@@ -89,5 +89,6 @@ ul{
 }
 
 .isDisabled{
+  opacity: 0;
   pointer-events: none;
 }

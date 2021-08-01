@@ -61,18 +61,25 @@ showsubtask(doc){
           <Modal content={pr} ref={this.myModal}/>
           <div className='br2 h-500px ba white b--white-10 shadow-5 carousel'>
           
-           {this.state.slide?
+           {/*this.state.slide?
           <a href="#carousel__slide2" >  
           <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
           </a>:
           <a href="#carousel__slide2" className="isDisabled">  
           <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
           </a>
-           }
+           */}
+           <a href="#carousel__slide2" className="isDisabled">  
+          <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
+          </a>
+          {this.state.slide?
           <a href="#carousel__slide1" onClick={()=>{this.updateSlide(false)}}>
           <img src={"https://image.flaticon.com/icons/svg/130/130882.svg"} alt="hell" id="left"/>
+          </a>:
+          <a href="#carousel__slide1" className="isDisabled">
+          <img src={"https://image.flaticon.com/icons/svg/130/130882.svg"} alt="hell" id="left"/>
           </a>
-
+          }
           <ol className="carousel__viewport ml-0">
             <li className="carousel__slide grid1" id="carousel__slide1">
               
@@ -169,7 +176,7 @@ showsubtask(doc){
          </li>
         </ol>
         </div>
-        <div>
+        {/*<div>
           <ul>
             <li className="slideitems pa3"><a href="#carousel__slide1" className="slidebutton" onClick={()=>{this.updateSlide(false)}}>slide1</a></li>
             {this.state.slide?
@@ -177,7 +184,7 @@ showsubtask(doc){
               <li className="slideitems pa3"><a href="#carousel__slide2" className="slidebutton isDisabled" >slide2</a></li>
             }
           </ul>
-          </div>
+          </div>*/}
           </div>
           :
           <div className='br2 ba white b--white-10 shadow-5 ma3'>
