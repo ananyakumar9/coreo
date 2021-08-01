@@ -34,62 +34,13 @@ class Subtask extends React.Component{
         {
           return(
         
-            <div><div className="tl"><a href="#carousel__slide1"><button onClick={()=>{this.setState({task:''}, ()=>{});this.props.updateSlide(false)}}>close</button></a></div>
-              <div className='w-70 bg-black center '>
-                    {this.state.task.title}<br />
+            <div>
+              <div className='  center  grid2'>
+                <div className="yflow ba ma1 bg-black">
+                <div className="tl "><a href="#carousel__slide1"><button onClick={()=>{this.setState({task:''}, ()=>{});this.props.updateSlide(false)}}>close</button></a></div>
+                {this.state.task.title}<br />
                     {this.state.task.date}<br />
                     {this.state.task.desc}<br />
-                    
-                    {
-                      this.state.subtasks.map((doc, index)=>{
-                        
-                        return(
-                          <div>
-                            
-                            <input type="checkbox" key={index} checked={this.state.completed[index]}
-                              onChange={()=>{
-                                var c=this.state.completed
-                                c[index]=!c[index]
-                                this.setState({
-                                completed:c
-                              },  ()=>{
-                                
-                               db.collection(this.state.user.uid).doc(this.state.task.id).set({
-                                  ...this.state.task,
-                                  
-                                  completed:this.state.completed
-                                })
-                              })
-                                }}/>
-                                <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
-                                
-                                
-                                
-                                
-                                <button onClick={()=>{
-                                    var c=this.state.subtasks
-                                    c.splice(index, 1)
-                                    var d=this.state.completed
-                                    d.splice(index, 1)
-                                    this.setState({
-                                    subtasks:c,
-                                    completed:d
-                              }, ()=>{
-                                     db.collection(this.state.user.uid).doc(this.state.task.id).set({
-                                        ...this.state.task,
-                                        completed: this.state.completed
-                                      })
-                              })}}>delete</button>
-
-
-                            
-                            </div>
-                          
-                        )
-                      }
-                      )
-                    }
-
                     Subtasks:<textarea id="input-field" onChange={(e)=>{z=e.target.value}}/><br />
                     <button onClick={()=>{
               if(z==='')
@@ -139,6 +90,122 @@ class Subtask extends React.Component{
                                 
                               })})}
                               }>delete</button>
+                </div>
+
+                    
+                    <div  className="yflow ba ma1 bg-black">
+                      pending:
+                    {
+                      this.state.subtasks.map((doc, index)=>{
+                        var done=this.state.completed[index];
+                        
+                        return(
+                          done===0 || done===false?
+                          <div>
+                            
+                            <input type="checkbox" key={index} checked={this.state.completed[index]}
+                              onChange={()=>{
+                                var c=this.state.completed
+                                c[index]=!c[index]
+                                this.setState({
+                                completed:c
+                              },  ()=>{
+                                
+                               db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                                  ...this.state.task,
+                                  
+                                  completed:this.state.completed
+                                })
+                              })
+                                }}/>
+                                <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
+                                
+                                
+                                
+                                
+                                <button onClick={()=>{
+                                    var c=this.state.subtasks
+                                    c.splice(index, 1)
+                                    var d=this.state.completed
+                                    d.splice(index, 1)
+                                    this.setState({
+                                    subtasks:c,
+                                    completed:d
+                              }, ()=>{
+                                     db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                                        ...this.state.task,
+                                        completed: this.state.completed
+                                      })
+                              })}}>delete</button>
+
+
+                            
+                            </div>
+                          :''
+                        )
+                      }
+                      )
+                    }
+                    </div>
+                    <div  className="yflow ba ma1 bg-black">
+                      completed:
+                      
+                    {
+                      this.state.subtasks.map((doc, index)=>{
+                        var done=this.state.completed[index];
+                        return(
+                          done===true?
+                          <div>
+                            
+                            <input type="checkbox" key={index} checked={this.state.completed[index]}
+                              onChange={()=>{
+                                var c=this.state.completed
+                                c[index]=!c[index]
+                                this.setState({
+                                completed:c
+                              },  ()=>{
+                                
+                               db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                                  ...this.state.task,
+                                  
+                                  completed:this.state.completed
+                                })
+                              })
+                                }}/>
+                                <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
+                                
+                                
+                                
+                                
+                                <button onClick={()=>{
+                                    var c=this.state.subtasks
+                                    c.splice(index, 1)
+                                    var d=this.state.completed
+                                    d.splice(index, 1)
+                                    this.setState({
+                                    subtasks:c,
+                                    completed:d
+                              }, ()=>{
+                                     db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                                        ...this.state.task,
+                                        completed: this.state.completed
+                                      })
+                              })}}>delete</button>
+
+
+                            
+                            </div>
+                          :''
+                        )
+                      }
+                      )
+                    }
+                    </div>
+                    
+                    
+
+                    
+              
                 </div>
             </div>
           )

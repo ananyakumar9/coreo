@@ -159,7 +159,7 @@ showsubtask(doc){
            
           </div>
           </li>
-         <li className="carousel__slide grid2" id="carousel__slide2">
+         <li className="carousel__slide" id="carousel__slide2">
           <div className="yflow ba ma1">
            <Subtask  ref={this.subtaskref} 
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}
@@ -167,12 +167,12 @@ showsubtask(doc){
           updateSlide={this.updateSlide}
           />
          </div>
-         <div className="yflow ba ma1">
-          {/*<DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>*/}
-          </div>
-          <div className="yflow ba ma1">
-          {/*<DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/>*/}
-          </div>
+         
+          {/*<div className="yflow ba ma1"><DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/></div>*/}
+          
+          
+          {/*<div className="yflow ba ma1"><DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/></div>*/}
+          
          </li>
         </ol>
         </div>
