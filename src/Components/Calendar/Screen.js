@@ -5,7 +5,7 @@ import firebase from '../../Config/firebase'
 
 import './Cal.css'
 const db=firebase.firestore()
-var k, newlist=[];
+var k, newlist=[], displaydday=0;
 //https://momentjs.com/docs/#/get-set/month/
 class Screen extends React.Component{
     constructor(props)
@@ -30,7 +30,7 @@ class Screen extends React.Component{
             time: new Date()
         }
         
-        
+        displaydday=0;
         this.getquotes()
         this.getdata()
     }
@@ -51,7 +51,24 @@ class Screen extends React.Component{
             }
             else{
                 
+                    
+                var endDate = moment(moment().format("DD-MM-YYYY"), "DD/MM/YYYY");
                 newlist=querySnapshot.data().dday;
+                for(var i=0;i<newlist.length;i++)
+                {
+                    
+                    if(moment(newlist[i].date, "DD-MM-YYYY").diff(endDate, "days")<=7  &&moment(newlist[i].date, "DD-MM-YYYY").diff(endDate, "days")>=0)
+                    {
+                        displaydday=newlist[i].date+': '+newlist[i].title;
+                        break;
+                    }
+
+                }
+                
+                if(displaydday==0)
+                {
+                    displaydday='no recent dday'
+                }
             }
                 
             
@@ -252,15 +269,7 @@ class Screen extends React.Component{
                     </div>
                     <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
                     <center>
-                        {
-                            newlist.length>0?
-                            <div>
-                            {newlist[0].date}:{newlist[0].title}
-    
-                            </div>
-                            :'no recent ddays'
-
-                        }
+                        {displaydday}
                         
                   
                 </center>

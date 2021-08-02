@@ -82,6 +82,12 @@ class DDay extends React.Component{
 
                                 };
                             newlist.push(newd);
+                            var today=moment().format("DD-MM-YYYY")
+                    
+                            var endDate = moment(today, "DD/MM/YYYY");
+                    
+                            newlist.sort((a, b) => moment(a.date, "DD-MM-YYYY").diff(endDate, "days")  - moment(b.date, "DD-MM-YYYY").diff(endDate, "days"))
+                            console.log(newlist)
                             db.collection(this.state.user).doc("d-day").set({
                                 dday:newlist,
                             }).then(() => {
