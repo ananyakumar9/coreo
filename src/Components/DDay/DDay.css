@@ -1,0 +1,12 @@
+.dday .green{
+    width:25%;
+    margin:auto;
+}
+.dday{
+    width:70%;
+    padding:2%;
+    margin:auto;
+}
+.dday .actualday{
+    margin-top:3%;
+}

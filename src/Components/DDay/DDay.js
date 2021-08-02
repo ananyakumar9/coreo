@@ -2,7 +2,7 @@
 import React from 'react'
 import moment from 'moment';
 import firebase from '../../Config/firebase'
-
+import './DDay.css'
 
 const db=firebase.firestore()
 
@@ -57,7 +57,7 @@ class DDay extends React.Component{
        
         return(
             
-            <div>
+            <div className="br2 h-500px ba white b--white-10 shadow-5 dday">
                 <div className="tl"><button onClick={()=>{this.props.updateSwitch(false)}}>close</button></div>
                     dday details<br />
                     Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
@@ -123,6 +123,10 @@ class DDay extends React.Component{
             
             }}>new dday
             </button>
+            <br />
+            <br /><br />
+            <br /><br />
+            <br />
 
 
             {
@@ -134,8 +138,8 @@ class DDay extends React.Component{
                     var dateDiff = startDate.diff(endDate, "days");
                     
                     return(
-                        <div>
-                            {index+1} {doc.title}:{doc.date}<br/>
+                        <div className="actualday">
+                            {index+1+")"} {doc.title}:{doc.date}<br/>
                             {
                                 dateDiff>=0?
                                 <div className="green">
@@ -157,7 +161,7 @@ class DDay extends React.Component{
 
                                       this.setState({},()=>{})
                             }}>delete</button>
-                            <hr />
+                            
                             <br />
                         </div>
                     )
