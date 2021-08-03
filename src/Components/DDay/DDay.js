@@ -59,7 +59,7 @@ class DDay extends React.Component{
             
             <div className="br2 h-500px ba white b--white-10 shadow-5 dday">
                 <div className="tl"><button className="crossbutton" onClick={()=>{this.props.updateSwitch(false)}}>X</button></div>
-                    dday details<br />
+                    DDay details<br />
                     Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
                     
                     Date: <input  id="input-field" type="date" data-date-format="DD-YYYY-MM" onChange={(e)=>{y=moment(e.target.valueAsDate).format('DD-MM-YYYY'); }}/><br />
@@ -136,8 +136,9 @@ class DDay extends React.Component{
                     var dateDiff = startDate.diff(endDate, "days");
                     
                     return(
-                        <div className="actualday">
-                            {index+1+")"} {doc.title}:{doc.date}<br/>
+                        <div className="actualday mh5" style={{display:'flex',justifyContent:'space-between'}}>
+                            <div>{index+1+")"} {doc.title}:{doc.date}
+                            </div>
                             {
                                 dateDiff>=0?
                                 <div className="green">
@@ -148,9 +149,9 @@ class DDay extends React.Component{
                                 </div>
                                 
                             }
-                            <br />
-                            
-                            <button onClick={()=>{
+                            <div style={{alignSelf:'flex-end'}}>
+                            <button className="crossbuttonlist" 
+                             onClick={()=>{
                                     newlist.splice(index, 1)
                                     db.collection(this.state.user).doc("d-day").set({
                                         
@@ -158,9 +159,9 @@ class DDay extends React.Component{
                                       })
 
                                       this.setState({},()=>{})
-                            }}>delete</button>
-                            
+                            }}>X</button>
                             <br />
+                            </div>
                         </div>
                     )
                 }):

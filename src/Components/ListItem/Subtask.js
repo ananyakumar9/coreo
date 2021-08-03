@@ -37,7 +37,7 @@ class Subtask extends React.Component{
             <div>
               <div className='center grid2'>
                 <div className="yflow ba ma1 bg-black pa2">
-                <div className="tl ">
+                <div className="tl">
                   <a href="#carousel__slide1">
                     <button className="crossbutton" onClick={()=>{this.setState({task:''}, ()=>{});this.props.updateSlide(false)}}>
                       X

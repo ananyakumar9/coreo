@@ -78,17 +78,16 @@ showsubtask(doc){
           <ol className="carousel__viewport ml-0">
             <li className="carousel__slide grid1" id="carousel__slide1">
               
-            <div className='tl pa2 yflow ba'>
+            <div className='tl pa2 yflow' id="home_1">
               <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/>
               
               <center>
-               
-                
                 <p className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
               onClick={()=>{this.updateSwitch(true)}}
-              >Calendar Event Display</p></center>
+              >Calendar Event Display</p>
+              </center>
             </div>
-          <div className="yflow ba">
+          <div className="yflow bl" id="home_2">
             <br/>
             Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
             Desc: <input  id="input-field" onChange={(e)=>{y=e.target.value}}/><br />
@@ -165,11 +164,6 @@ showsubtask(doc){
           updateSlide={this.updateSlide}
           />
          </div>
-         
-          {/*<div className="yflow ba ma1"><DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/></div>*/}
-          
-          
-          {/*<div className="yflow ba ma1"><DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}}  user={this.state.user.uid}/></div>*/}
           
          </li>
         </ol>

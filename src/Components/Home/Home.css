@@ -3,7 +3,7 @@
 .grid1{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(440px,1fr));
-    grid-template-rows: 1fr;
+    grid-template-rows: repeat(auto-fill,minmax(250px,1fr));
     grid-gap: 10px;
 }
 .grid2{
@@ -28,6 +28,27 @@
   * {
     -ms-overflow-style: none;
   }
+#home_1::-webkit-scrollbar {
+    width: 5px;
+  }
+#home_1::-webkit-scrollbar-track {
+    background: transparent;
+  }
+#home_1::-webkit-scrollbar-thumb {
+    background: white;
+    border: none;
+  }
+  #home_2::-webkit-scrollbar {
+    width: 5px;
+  }
+#home_2::-webkit-scrollbar-track {
+    background: transparent;
+  }
+#home_2::-webkit-scrollbar-thumb {
+    background: white;
+    border: none;
+  }
+
   .carousel {
     position: relative;
     filter: drop-shadow(0 0 10px #0003);
