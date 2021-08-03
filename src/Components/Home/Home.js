@@ -93,7 +93,7 @@ showsubtask(doc){
             Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
             Desc: <input  id="input-field" onChange={(e)=>{y=e.target.value}}/><br />
             Subtasks:<textarea id="input-field" onChange={(e)=>{z=e.target.value}}/><br />
-            <button onClick={()=>{
+            <button className="custombutton grow" onClick={()=>{
               if(x===''||y==='')
               {
                 pr={
@@ -146,7 +146,7 @@ showsubtask(doc){
           });
               }
               
-          }}>new item</button>
+          }}>New List</button>
             <br />
             <br />
             
@@ -185,7 +185,7 @@ showsubtask(doc){
           </div>*/}
           </div>
           :
-          <div className='br2 ba white b--white-10 shadow-5 ma3'>
+          <div className='br2 b--white-10 ma3'>
           <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}} updateSwitch={this.updateSwitch} user={this.state.user.uid}/>
           </div>
           }

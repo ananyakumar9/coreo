@@ -58,12 +58,12 @@ class DDay extends React.Component{
         return(
             
             <div className="br2 h-500px ba white b--white-10 shadow-5 dday">
-                <div className="tl"><button onClick={()=>{this.props.updateSwitch(false)}}>close</button></div>
+                <div className="tl"><button className="crossbutton" onClick={()=>{this.props.updateSwitch(false)}}>X</button></div>
                     dday details<br />
                     Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
                     
                     Date: <input  id="input-field" type="date" data-date-format="DD-YYYY-MM" onChange={(e)=>{y=moment(e.target.valueAsDate).format('DD-MM-YYYY'); }}/><br />
-                    <button onClick={()=>{
+                    <button className="custombutton grow mt3 pa2" onClick={()=>{
                         if(x===''||y==='')
                         {
                             pr={
@@ -121,11 +121,9 @@ class DDay extends React.Component{
                         });
                 }
             
-            }}>new dday
+            }}>New DDay
             </button>
             <br />
-            <br /><br />
-            <br /><br />
             <br />
 
 

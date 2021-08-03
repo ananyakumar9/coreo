@@ -1,3 +1,5 @@
+
+
 .grid1{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(440px,1fr));
@@ -40,7 +42,6 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
   }
-  
 .carousel__slide {
     position: relative;
     flex: 0 0 100%;
@@ -92,3 +93,5 @@ ul{
   opacity: 0;
   pointer-events: none;
 }
+
+

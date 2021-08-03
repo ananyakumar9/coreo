@@ -2,10 +2,30 @@
   text-align: center;
 }
 
+.custombutton{
+  background: transparent;
+  border-color: white;
+  border-width: 2px;
+  border-radius: 0;
+  color: white;
+  padding: 2%;
+  margin: 5px;
+}
+.crossbuttonlist{
+  text-decoration: none;
+  background: transparent;
+  color: white;
+  border-width: 1px;
+}
+.crossbutton{
+  background: transparent;
+  color: white;
+  border-color: white;
+}
 
-
-
-
+.custombutton:hover, .crossbutton:hover,.crossbuttonlist:hover{
+  cursor:pointer;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
