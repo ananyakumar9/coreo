@@ -44,10 +44,12 @@ class Subtask extends React.Component{
                     </button>
                   </a>
                 </div>
+                <div className="ma2">
                 {this.state.task.title}<br />
-                    {this.state.task.date}<br />
+                    {this.state.task.date}<br /><br/>
                     {this.state.task.desc}<br />
-                    Subtasks:<textarea id="input-field" className="br2 w-50 mt2" onChange={(e)=>{z=e.target.value}}/><br />
+                    Item:<textarea id="input-field" className="br2 w-50 mt2" onChange={(e)=>{z=e.target.value}}/><br />
+                </div><br/>
                     <button className="ma2 custombutton grow" onClick={()=>{
               if(z==='')
               {
@@ -88,7 +90,7 @@ class Subtask extends React.Component{
           }}>New Subtask</button>
             <br />
             <br />
-            <a href="#carousel__slide1"><button className="ma2 custombutton grow" onClick={()=>{
+            <a href="#carousel__slide1"><button className="mt4 custombutton grow" onClick={()=>{
                               
                               db.collection(this.state.user.uid).doc(this.state.task.id).delete().then(()=>{ this.state.reqdatechange(); this.setState({
                                 task:''
@@ -107,8 +109,8 @@ class Subtask extends React.Component{
                         
                         return(
                           done===0 || done===false?
-                          <div className=" pa1 mh5 tl" style={{display:'flex',justifyContent:'space-between'}}>
-                            <div>
+                          <div className=" pa1 mh3 tl" style={{display:'flex',justifyContent:'space-between'}}>
+                            <div className="w-80">
                             <input type="checkbox" key={index} checked={this.state.completed[index]}
                               onChange={()=>{
                                 var c=this.state.completed
@@ -123,9 +125,9 @@ class Subtask extends React.Component{
                                   completed:this.state.completed
                                 })
                               })
-                                }}/>
+                                }}/>&nbsp;
                                 <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
-                              </div>
+                            </div>
                                 <button className="crossbuttonlist" onClick={()=>{
                                     var c=this.state.subtasks
                                     c.splice(index, 1)
@@ -158,8 +160,8 @@ class Subtask extends React.Component{
                         var done=this.state.completed[index];
                         return(
                           done===true?
-                          <div className=" pa1 mh5 tl" style={{display:'flex',justifyContent:'space-between'}}>
-                            <div>
+                          <div className=" pa1 mh3 tl" style={{display:'flex',justifyContent:'space-between'}}>
+                            <div className="w-80">
                             <input type="checkbox" key={index} checked={this.state.completed[index]}
                               onChange={()=>{
                                 var c=this.state.completed
@@ -174,7 +176,7 @@ class Subtask extends React.Component{
                                   completed:this.state.completed
                                 })
                               })
-                                }}/>
+                                }}/>&nbsp;
                                 <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
                             
                             </div>

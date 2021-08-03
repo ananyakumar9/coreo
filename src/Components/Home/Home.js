@@ -54,7 +54,7 @@ showsubtask(doc){
           {!this.state.switch?
           <div>
           
-          <div className='br2 h-500px ba white b--white-10 shadow-5 carousel'>
+          <div className='br2 ba white b--white-10 shadow-5 carousel'>
           
            {/*this.state.slide?
           <a href="#carousel__slide2" >  

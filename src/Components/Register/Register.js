@@ -44,15 +44,15 @@ const Register=({onRouteChange, onUserChange})=> {
                 <legend className="f4 fw6 ph0 mh0" key="2" >Register</legend>
                 <div className="mt3" key="3">
                     <label className="db fw6 lh-copy f6" htmlFor="email-address">Name</label>
-                    <input className="pa2 input-reset ba b--white bg-transparent hover-bg-black hover-white w-100" type="text" name="username"  id="username" onChange={(e)=>{newuser.name=e.target.value}}/>
+                    <input className="pa2 input-reset ba b--white bg-transparent hover-bg-black hover-white w-100 white" type="text" name="username"  id="username" onChange={(e)=>{newuser.name=e.target.value}}/>
                 </div>
                 <div className="mt3" key="4">
                     <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                    <input className="pa2 input-reset ba b--white bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" onChange={(e)=>{newuser.email=e.target.value}}/>
+                    <input className="pa2 input-reset ba b--white bg-transparent hover-bg-black hover-white w-100 white" type="email" name="email-address"  id="email-address" onChange={(e)=>{newuser.email=e.target.value}}/>
                 </div>
                 <div className="mv3" key="5">
                     <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                    <input className="b pa2 input-reset ba b--white bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" onChange={(e)=>{newuser.pass=e.target.value}}/>
+                    <input className="b pa2 input-reset ba b--white bg-transparent hover-bg-black hover-white w-100 white" type="password" name="password"  id="password" onChange={(e)=>{newuser.pass=e.target.value}}/>
                 </div>
                 </fieldset>
                 <div className="" key="7">

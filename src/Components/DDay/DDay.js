@@ -58,12 +58,20 @@ class DDay extends React.Component{
         return(
             
             <div className="br2 h-500px ba white b--white-10 shadow-5 dday">
-                <div className="tl"><button className="crossbutton" onClick={()=>{this.props.updateSwitch(false)}}>X</button></div>
-                    DDay details<br />
-                    Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
+                <div className="tl">
+                    <button className="crossbutton" onClick={()=>{this.props.updateSwitch(false)}}>
+                        X
+                    </button>
+                </div>
+                    <div className="pa2 ma2">DDay details</div><br/>
+                    <div className="center pa2" style={{display:'flex',justifyContent:'center'}}>
+                    <div className="tl mr4">
+                        Title: <br/><input id="input-field" onChange={(e)=>{x=e.target.value}}/><br/><br/>
                     
-                    Date: <input  id="input-field" type="date" data-date-format="DD-YYYY-MM" onChange={(e)=>{y=moment(e.target.valueAsDate).format('DD-MM-YYYY'); }}/><br />
-                    <button className="custombutton grow mt3 pa2" onClick={()=>{
+                        Date: <br/><input  id="input-field" type="date" data-date-format="DD-YYYY-MM" onChange={(e)=>{y=moment(e.target.valueAsDate).format('DD-MM-YYYY'); }}/><br />
+                    </div>
+                    <div style={{alignSelf:'center'}} className="ma3">
+                    <button className="custombutton grow pa2 ma2" onClick={()=>{
                         if(x===''||y==='')
                         {
                             pr={
@@ -122,7 +130,8 @@ class DDay extends React.Component{
                 }
             
             }}>New DDay
-            </button>
+            </button></div>
+            </div>
             <br />
             <br />
 
@@ -137,7 +146,7 @@ class DDay extends React.Component{
                     
                     return(
                         <div className="actualday mh5" style={{display:'flex',justifyContent:'space-between'}}>
-                            <div>{index+1+")"} {doc.title}:{doc.date}
+                            <div className="w-33 tl">{index+1+")"} {doc.title}:{doc.date}
                             </div>
                             {
                                 dateDiff>=0?
@@ -149,7 +158,7 @@ class DDay extends React.Component{
                                 </div>
                                 
                             }
-                            <div style={{alignSelf:'flex-end'}}>
+                            <div style={{alignSelf:'flex-start'}}>
                             <button className="crossbuttonlist" 
                              onClick={()=>{
                                     newlist.splice(index, 1)

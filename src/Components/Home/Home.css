@@ -3,7 +3,7 @@
 .grid1{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(440px,1fr));
-    grid-template-rows: repeat(auto-fill,minmax(250px,1fr));
+    grid-template-rows: repeat(auto-fill,minmax(260px,1fr));
     grid-gap: 10px;
 }
 .grid2{
@@ -28,6 +28,7 @@
   * {
     -ms-overflow-style: none;
   }
+ 
 #home_1::-webkit-scrollbar {
     width: 5px;
   }
