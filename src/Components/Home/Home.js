@@ -158,7 +158,7 @@ showsubtask(doc){
           </div>
           </li>
          <li className="carousel__slide" id="carousel__slide2">
-          <div className="yflow ba ma1">
+          <div className="ma1">
            <Subtask  ref={this.subtaskref} 
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}
           reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}

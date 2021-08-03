@@ -35,14 +35,20 @@ class Subtask extends React.Component{
           return(
         
             <div>
-              <div className='  center  grid2'>
-                <div className="yflow ba ma1 bg-black">
-                <div className="tl "><a href="#carousel__slide1"><button onClick={()=>{this.setState({task:''}, ()=>{});this.props.updateSlide(false)}}>close</button></a></div>
+              <div className='center grid2'>
+                <div className="yflow ba ma1 bg-black pa2">
+                <div className="tl ">
+                  <a href="#carousel__slide1">
+                    <button onClick={()=>{this.setState({task:''}, ()=>{});this.props.updateSlide(false)}}>
+                      X
+                    </button>
+                  </a>
+                </div>
                 {this.state.task.title}<br />
                     {this.state.task.date}<br />
                     {this.state.task.desc}<br />
-                    Subtasks:<textarea id="input-field" onChange={(e)=>{z=e.target.value}}/><br />
-                    <button onClick={()=>{
+                    Subtasks:<textarea id="input-field" className="br2 w-50 mt2" onChange={(e)=>{z=e.target.value}}/><br />
+                    <button className="ma2" onClick={()=>{
               if(z==='')
               {
                 pr={
@@ -82,7 +88,7 @@ class Subtask extends React.Component{
           }}>new subtask</button>
             <br />
             <br />
-                    <button onClick={()=>{
+                    <button className="ma2" onClick={()=>{
                               
                               db.collection(this.state.user.uid).doc(this.state.task.id).delete().then(()=>{ this.state.reqdatechange(); this.setState({
                                 task:''
@@ -93,15 +99,15 @@ class Subtask extends React.Component{
                 </div>
 
                     
-                    <div  className="yflow ba ma1 bg-black">
-                      pending:
+                    <div  className="yflow ba ma1 bg-black pa3" >
+                    <div className="pa2 mv2">PENDING</div>
                     {
                       this.state.subtasks.map((doc, index)=>{
                         var done=this.state.completed[index];
                         
                         return(
                           done===0 || done===false?
-                          <div>
+                          <div className=" pa1 ml4 tl">
                             
                             <input type="checkbox" key={index} checked={this.state.completed[index]}
                               onChange={()=>{
@@ -119,10 +125,6 @@ class Subtask extends React.Component{
                               })
                                 }}/>
                                 <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
-                                
-                                
-                                
-                                
                                 <button onClick={()=>{
                                     var c=this.state.subtasks
                                     c.splice(index, 1)
@@ -147,15 +149,15 @@ class Subtask extends React.Component{
                       )
                     }
                     </div>
-                    <div  className="yflow ba ma1 bg-black">
-                      completed:
+                    <div  className="yflow ba ma1 bg-black pa3" >
+                     <div className="pa2 mv2">COMPLETED</div>
                       
                     {
                       this.state.subtasks.map((doc, index)=>{
                         var done=this.state.completed[index];
                         return(
                           done===true?
-                          <div>
+                          <div className="pa1 ml4 tl">
                             
                             <input type="checkbox" key={index} checked={this.state.completed[index]}
                               onChange={()=>{
