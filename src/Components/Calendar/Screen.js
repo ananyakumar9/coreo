@@ -184,7 +184,7 @@ class Screen extends React.Component{
             <div>
                 <span>Welcome, </span>
                 {
-                    this.state.username
+                    firebase.auth().currentUser.displayName
                 }
                 <br />
                 {

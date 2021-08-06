@@ -37,6 +37,11 @@ class Home extends React.Component{
     this.myRef = React.createRef();
     this.myModal = React.createRef();
     this.subtaskref = React.createRef();
+    pr={
+      open:false,
+      msg:'null',
+      color:'green'
+    }
     
   }
   updateSwitch=(s)=>{this.setState({switch:s})}

@@ -14,7 +14,7 @@ async function writeUserData(userId) {
 
         user.updateProfile({
         displayName: newuser.name,
-        
+        photoURL: "https://firebasestorage.googleapis.com/v0/b/coreo-49ca8.appspot.com/o/default-profile.jpg?alt=media&token=57cdfc46-a697-4aa1-9a6a-8b565dd87391"
         }).then(() => {
         // Update successful
         // ...

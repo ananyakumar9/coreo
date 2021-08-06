@@ -89,6 +89,8 @@ class DDay extends React.Component{
                             date: y,
 
                                 };
+                                x='';
+                                y='';
                             newlist.push(newd);
                             var today=moment().format("DD-MM-YYYY")
                     

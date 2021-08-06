@@ -87,7 +87,7 @@ class Subtask extends React.Component{
                 });
               }
               
-          }}>New Subtask</button>
+          }}>New Item</button>
             <br />
             <br />
             <a href="#carousel__slide1"><button className="mt4 custombutton grow" onClick={()=>{
@@ -103,7 +103,9 @@ class Subtask extends React.Component{
                     
                     <div  className="yflow ba ma1 bg-black pa3" >
                     <div className="pa2 mv2">PENDING</div>
+                    
                     {
+                      
                       this.state.subtasks.map((doc, index)=>{
                         var done=this.state.completed[index];
                         
@@ -118,11 +120,32 @@ class Subtask extends React.Component{
                                 this.setState({
                                 completed:c
                               },  ()=>{
-                                
+                                var flag=1;
+                                for(var i=0;i<c.length;i++)
+                                  {
+                                    if(c[i]===false || c[i]===0)
+                                    {
+                                      flag=0;
+                                      break;
+                                    }
+
+                                  }
+                                  if(flag===1)
+                                  {
+                                    pr={
+                                      open: true,
+                                      msg:'congrats, no pending ',
+                                      color:'green'
+
+                                    }
+                                    this.state.showmodal(pr);
+                                  }
                                db.collection(this.state.user.uid).doc(this.state.task.id).set({
                                   ...this.state.task,
                                   
                                   completed:this.state.completed
+
+                                  
                                 })
                               })
                                 }}/>&nbsp;
