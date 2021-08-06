@@ -39,7 +39,7 @@ class Subtask extends React.Component{
                 <div className="yflow ba ma1 bg-black pa2">
                 <div className="tl">
                   <a href="#carousel__slide1">
-                    <button className="crossbutton" onClick={()=>{this.setState({task:''}, ()=>{});this.props.updateSlide(false)}}>
+                    <button className="crossbutton" onClick={()=>{this.setState({task:''}, ()=>{});this.props.updateSlide(false);}}>
                       X
                     </button>
                   </a>
@@ -96,8 +96,7 @@ class Subtask extends React.Component{
                                 task:''
                               }, ()=>{
                                 
-                              })})}
-                              }>Delete List</button></a>
+                              })});this.props.updateSlide(false)}}>Delete Entire List</button></a>
                 </div>
 
                     

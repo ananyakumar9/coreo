@@ -55,6 +55,7 @@ showsubtask(doc){
   render(){
     return (
         <div>
+          
           <Modal content={pr} ref={this.myModal}/>
           {!this.state.switch?
           <div>
@@ -94,9 +95,11 @@ showsubtask(doc){
             </div>
           <div className="yflow bl" id="home_2">
             <br/>
-            Title: <input id="input-field" onChange={(e)=>{x=e.target.value}}/><br />
-            Desc: <input  id="input-field" onChange={(e)=>{y=e.target.value}}/><br />
-            Subtasks:<textarea id="input-field" onChange={(e)=>{z=e.target.value}}/><br />
+            <table className="center">
+            <tr><td className="tl">Title: </td><td className="tl"><input id="input-field" onChange={(e)=>{x=e.target.value}}/></td></tr>
+            <tr><td className="tl"> Desc: </td><td className="tl"><input  id="input-field" onChange={(e)=>{y=e.target.value}}/></td></tr>
+            <tr><td className="tl">Subtasks:</td><td className="tl"><textarea id="input-field" onChange={(e)=>{z=e.target.value}}/></td></tr>
+            </table>
             <button className="custombutton grow" onClick={()=>{
               if(x===''||y==='')
               {

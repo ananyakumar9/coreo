@@ -26,10 +26,12 @@ class Navigation extends React.Component {
     
   return (
     <nav className='mb4 main' >
-        <div><p className='pa2 f1 ma2 b'>Coreo</p></div>
+        <div><p className='pa2 f2 ma2 b'>Coreo</p></div>
         {this.state.route==='Home' || this.state.route==='Settings'?
-        <div class="dropdown">
-          <button className="dropbtn"><img src={firebase.auth().currentUser.photoURL} width='70px'></img></button>
+        <div class="dropdown mr2" style={{alignSelf:'center'}}>
+          <button className="dropbtn">
+            <img className="br-100" src={firebase.auth().currentUser.photoURL} width='70px'/>
+          </button>
           <div className="dropdown-content">
               <p  onClick={()=>{
                     firebase.auth().signOut().then(() => {

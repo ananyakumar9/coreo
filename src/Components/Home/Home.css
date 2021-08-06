@@ -12,6 +12,8 @@
   grid-template-rows: 460px;
   grid-gap: 10px;
 }
+
+
 *::-webkit-scrollbar {
     width: 0;
   }
@@ -115,5 +117,4 @@ ul{
   opacity: 0;
   pointer-events: none;
 }
-
 

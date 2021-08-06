@@ -10,10 +10,6 @@
     display:flex;
     justify-content:flex-end;
 }
-
-
-
-
 .dropbtn {
     margin-top:5px;
     background: none;
@@ -21,8 +17,8 @@
     cursor: pointer;
 }
 .dropbtn img{
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
 }
 .dropdown-content {

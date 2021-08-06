@@ -182,10 +182,9 @@ class Screen extends React.Component{
         //console.log(daysM)
         return(
             <div>
-                <span>Welcome, </span>
-                {
+                <span className="f3">Welcome, {
                     firebase.auth().currentUser.displayName
-                }
+                }</span>
                 <br />
                 {
                     this.state.quote

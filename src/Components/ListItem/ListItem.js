@@ -57,7 +57,7 @@ class ListItem extends React.Component{
     {
       return(
         <div>
-          <div className='w-70 bg-black center '>
+          <div className='w-70 bg-black center'>
                 {this.state.reqdate}<br />
                 
                 {

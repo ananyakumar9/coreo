@@ -1,8 +1,7 @@
 import React from 'react';
-
-import Modal from '../Modals/Modal'
-import firebase from '../../Config/firebase'
-import './settings.css'
+import Modal from '../Modals/Modal';
+import firebase from '../../Config/firebase';
+import './settings.css';
 
 
 var x='', y='', z, newPassword, pr={
@@ -106,9 +105,6 @@ class Settings extends React.Component{
                     });
                   }
                 );
-
-         
-            
             
       }
       else{
@@ -168,32 +164,31 @@ class Settings extends React.Component{
   render(){
    
       return (
-        <div className="settings">
+        <div className="settings tl">
           <div>
-          <button onClick={()=>this.state.onRouteChange('Home')}>back</button><br /><br />
+          <button className="custombutton" onClick={()=>this.state.onRouteChange('Home')}>Back</button><br /><br />
           <img src={this.state.photo} ></img><br />
           <Modal ref={this.modalref} content={pr} />
           </div>
           
 
         <div>
-        <div className="settings-grid">          
+        <div className="settings-grid tl">          
             Change Name: <input id="input-field" onChange={(e)=>{x=e.target.value}} placeholder={this.state.user.displayName}/>
             Change Photo: <input type="file" id="image" onChange={(e)=>{file=e.target.files[0]}} /><br />
-            <button onClick={ ()=>{this.changeprofilesettings();}}>save changes</button>
-          </div>
+            <button className="custombutton w-30 ml0" onClick={ ()=>{this.changeprofilesettings();}}>save changes</button>
+        </div>
           
           
-          <div className="settings-grid">   
-          Change Email: <input id="input-field" onChange={(e)=>{z=e.target.value}} placeholder={this.state.user.email}/><br />
-          Change Password: <input id="input-field" type="password" onChange={(e)=>{newPassword=e.target.value}} /><br />
-          <button onClick={()=>{this.changeaccountsettings();}}>save changes</button>
-          </div>
+        <div className="settings-grid tl">   
+        Change Email: <input id="input-field" onChange={(e)=>{z=e.target.value}} placeholder={this.state.user.email}/><br />
+        Change Password: <input id="input-field" type="password" onChange={(e)=>{newPassword=e.target.value}} /><br />
+        <button className="custombutton w-30 ml0" onClick={()=>{this.changeaccountsettings();}}>save changes</button>
+        </div>
 
 
-
-
-          <p  onClick={()=>{const user = firebase.auth().currentUser;
+          <center>
+          <p onClick={()=>{const user = firebase.auth().currentUser;
 
             user.delete().then(() => {
               // User deleted.
@@ -203,9 +198,9 @@ class Settings extends React.Component{
               // An error ocurred
               // ...
             })}}
-            className='pa2 ma2 f4 link dim underline'>delete acc
+            className='pa2 ma2 f4 link dim underline w-40' style={{cursor:'pointer'}}>Delete Account
               </p>
-
+            </center>
         </div>
 
 
