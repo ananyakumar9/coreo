@@ -117,4 +117,9 @@ ul{
   opacity: 0;
   pointer-events: none;
 }
-
+.back-shed {
+  background-color: rgba(248, 248, 248, 0.42);
+  transition: all 1.3s;
+  height: 100%;
+  width: 100%;
+  }

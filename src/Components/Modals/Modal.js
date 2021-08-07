@@ -10,7 +10,6 @@ class Modal extends React.Component{
     console.log(props)
     this.state={
      p:props.content
-      
     }
     
     
@@ -20,7 +19,7 @@ class Modal extends React.Component{
     });
   }
 
-  
+
  
   render()
   {
@@ -29,24 +28,22 @@ class Modal extends React.Component{
       return(
         <div className={mname} 
         style={{
-          transform: this.state.p.open ? 'translateY(0vh)' : 'translateY(-100vh)',
-          opacity: this.state.p.open ? '1' : '0',
-          background: 'rgba(48, 49, 48, 0.42)'
+         opacity: this.state.p.open ? '1' : '0'
           }}>
             <div className={cname}>
                {
                this.state.p.msg
                }
-          <button className="crossbutton bg-black" onClick={()=>{var toggle=this.state.p
-            toggle={
-                ...toggle,
-                open: !toggle.open
-            }
-            this.setState({
-                p:toggle
-            })}}>
-              <span >&times;</span>
-          </button>
+              <button className="crossbutton bg-black" onClick={()=>{var toggle=this.state.p
+                toggle={
+                    ...toggle,
+                    open: !toggle.open
+                }
+                this.setState({
+                    p:toggle
+                })}}>
+                  <span >&times;</span>
+              </button>
             </div>
         </div>
       ) 

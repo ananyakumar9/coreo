@@ -55,21 +55,13 @@ showsubtask(doc){
   render(){
     return (
         <div>
-          
-          <Modal content={pr} ref={this.myModal}/>
           {!this.state.switch?
           <div>
           
           <div className='br2 ba white b--white-10 shadow-5 carousel'>
-          
-           {/*this.state.slide?
-          <a href="#carousel__slide2" >  
-          <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
-          </a>:
-          <a href="#carousel__slide2" className="isDisabled">  
-          <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
-          </a>
-           */}
+           
+            <Modal content={pr} ref={this.myModal}/>
+           
            <a href="#carousel__slide2" className="isDisabled">  
           <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
           </a>
@@ -86,12 +78,13 @@ showsubtask(doc){
               
             <div className='tl pa2 yflow' id="home_1">
               <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/>
-              
+              <div className="bl br bb w-50 center b--white-10">
               <center>
                 <p className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
               onClick={()=>{this.updateSwitch(true)}}
               >Calendar Event Display</p>
               </center>
+              </div>
             </div>
           <div className="yflow bl" id="home_2">
             <br/>
@@ -133,6 +126,7 @@ showsubtask(doc){
               Array.from(document.querySelectorAll("textarea")).forEach(
                 input => (input.value = "")
               );
+              x="";y="";z="";
               this.setState({
                 listdets:{
                   title:'',
@@ -188,7 +182,8 @@ showsubtask(doc){
           </div>
           :
           <div className='br2 b--white-10 ma3'>
-          <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}} updateSwitch={this.updateSwitch} user={this.state.user.uid}/>
+            <Modal content={pr} ref={this.myModal}/>
+            <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}} updateSwitch={this.updateSwitch} user={this.state.user.uid}/>
           </div>
           }
         </div>

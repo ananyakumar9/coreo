@@ -196,13 +196,13 @@ class Screen extends React.Component{
 
                 <br />
                 <br />
-                <br />
                 <div>
                     
                 
                     <div className="calendar">
                     <div className="months-bar">
-                    {this.month()}
+                    {//this.month()
+                    }
                         <select className="months-popup" onChange={this.handlechange} value={this.month()}>
                             
                             
@@ -221,7 +221,8 @@ class Screen extends React.Component{
                         </select>
 
 
-                        {this.year()}
+                        {//this.year()
+                        }
                         <select className="months-popup" onChange={this.handlechangeyear} value={this.year()}>
                             
                             
@@ -266,9 +267,12 @@ class Screen extends React.Component{
                         </div>
                     </div>
                     <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
+            
                     <center>
+                        <div className="bt br bl w-50 pa1 b--white-10">
+                            <div className="underline pa1">Upcoming Events</div>
                         {displaydday}
-                        
+                        </div>
                   
                 </center>
                 </div>

@@ -15,11 +15,11 @@ class Subtask extends React.Component{
       completed:'',
       reqdatechange:props.reqdatechange,
       showmodal:props.showmodal
-      
     }
     
     
   }
+ 
   showsubtask(req, user) {
     this.setState({user:user, task:req, subtasks:req.subtasks, completed:req.completed }, ()=>{
       
@@ -90,13 +90,20 @@ class Subtask extends React.Component{
           }}>New Item</button>
             <br />
             <br />
-            <a href="#carousel__slide1"><button className="mt4 custombutton grow" onClick={()=>{
-                              
-                              db.collection(this.state.user.uid).doc(this.state.task.id).delete().then(()=>{ this.state.reqdatechange(); this.setState({
-                                task:''
-                              }, ()=>{
-                                
-                              })});this.props.updateSlide(false)}}>Delete Entire List</button></a>
+            <a href="#carousel__slide1">
+            
+              <button className="mt4 custombutton grow" onClick={()=>{
+                      
+                      db.collection(this.state.user.uid).doc(this.state.task.id)
+                      .delete()
+                      .then(()=>{ this.state.reqdatechange(); this.setState({
+                             task:''
+                              }, ()=>{}
+                              )
+                            })
+                      this.props.updateSlide(false);}}>Delete Entire List</button>
+            </a>
+          
                 </div>
 
                     
