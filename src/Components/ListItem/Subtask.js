@@ -14,9 +14,15 @@ class Subtask extends React.Component{
       subtasks:'',
       completed:'',
       reqdatechange:props.reqdatechange,
-      showmodal:props.showmodal
+      showmodal:props.showmodal,
+      openmodal:false
     }
-    
+    pr={
+      open:false,
+      color:'red',
+      msg:'null'
+    }
+
     
   }
  
@@ -35,7 +41,37 @@ class Subtask extends React.Component{
           return(
         
             <div>
+              
+              
               <div className='center grid2'>
+              {
+                this.state.openmodal?
+                <div className="modal  true">
+                  <div className="content red">
+                  do you want to delete?<br />
+                  <button onClick={()=>{
+                      
+                      this.setState({
+                        openmodal:false
+                      }, ()=>{})}}>no</button>
+                  <button onClick={()=>{
+                      
+                      db.collection(this.state.user.uid).doc(this.state.task.id)
+                      .delete()
+                      .then(()=>{ this.state.reqdatechange(); this.setState({
+                             task:''
+                              }, ()=>{}
+                              )
+                            })
+                            this.setState({
+                              openmodal:false
+                            }, ()=>{})
+                      this.props.updateSlide(false);}}>yes</button>  
+
+                  </div>
+                  
+                </div>:''
+              }
                 <div className="yflow ba ma1 bg-black pa2">
                 <div className="tl">
                   <a href="#carousel__slide1">
@@ -94,14 +130,9 @@ class Subtask extends React.Component{
             
               <button className="mt4 custombutton grow" onClick={()=>{
                       
-                      db.collection(this.state.user.uid).doc(this.state.task.id)
-                      .delete()
-                      .then(()=>{ this.state.reqdatechange(); this.setState({
-                             task:''
-                              }, ()=>{}
-                              )
-                            })
-                      this.props.updateSlide(false);}}>Delete Entire List</button>
+                     this.setState({
+                       openmodal:true
+                     }, ()=>{})}}>Delete Entire List</button>
             </a>
           
                 </div>

@@ -27,7 +27,8 @@ class Screen extends React.Component{
             thisMonth: moment().format("MMMM"),
             thisYear: moment().format("Y"),
             reqdate:moment().get("date"),
-            time: new Date()
+            time: new Date(),
+            
         }
         
         displaydday=0;
@@ -64,10 +65,20 @@ class Screen extends React.Component{
                     }
 
                 }
+                    
                 
                 if(displaydday==0)
                 {
                     displaydday='no recent dday'
+                }
+                else{
+                    var today=moment().format("DD-MM-YYYY")
+                    var startDate = moment(displaydday, "DD-MM-YYYY");
+                    var endDay = moment(today, "DD/MM/YYYY");
+                    var dateDiff = startDate.diff(endDay, "days");
+                    displaydday=displaydday+" countdown: "+dateDiff
+                    console.log(dateDiff)
+
                 }
             }
                 
@@ -77,6 +88,9 @@ class Screen extends React.Component{
             }, ()=>{
                
             })
+            
+        }).catch(err=>{
+            console.log(err.message)
             
         })
       }
@@ -147,8 +161,10 @@ class Screen extends React.Component{
         })
     }
     componentDidMount() {
+        
         this.update = setInterval(() => {
-            this.setState({ time: new Date() });
+            this.setState({ time: new Date(),
+            });
         }, 1 * 1000); 
       }
       componentWillUnmount() {
@@ -271,7 +287,7 @@ class Screen extends React.Component{
                     <center>
                         <div className="bt br bl w-50 pa1 b--white-10">
                             <div className="underline pa1">Upcoming Events</div>
-                        {displaydday}
+                        {displaydday}<br />{}
                         </div>
                   
                 </center>
