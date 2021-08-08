@@ -54,19 +54,20 @@ class Subtask extends React.Component{
                       this.setState({
                         openmodal:false
                       }, ()=>{})}}>no</button>
+                  <a href="#carousel__slide1">
                   <button onClick={()=>{
-                      
+                      this.props.updateSlide(false);
                       db.collection(this.state.user.uid).doc(this.state.task.id)
                       .delete()
                       .then(()=>{ this.state.reqdatechange(); this.setState({
-                             task:''
+                             task:'',
+                             openmodal:false,
                               }, ()=>{}
                               )
                             })
-                            this.setState({
-                              openmodal:false
-                            }, ()=>{})
-                      this.props.updateSlide(false);}}>yes</button>  
+                            
+                      }}>yes</button>
+                    </a>  
 
                   </div>
                   
@@ -126,14 +127,14 @@ class Subtask extends React.Component{
           }}>New Item</button>
             <br />
             <br />
-            <a href="#carousel__slide1">
+            
             
               <button className="mt4 custombutton grow" onClick={()=>{
                       
                      this.setState({
                        openmodal:true
                      }, ()=>{})}}>Delete Entire List</button>
-            </a>
+            
           
                 </div>
 

@@ -6,10 +6,16 @@ import './Modal.css'
 class Modal extends React.Component{
   constructor(props)
   {
+    let pr={
+      open:false,
+      msg:'null',
+      color:'red'
+
+    }
     super(props)
     console.log(props)
     this.state={
-     p:props.content
+     p:pr
     }
     
     
@@ -26,7 +32,8 @@ class Modal extends React.Component{
 
     }
     
-    this.state.p.open?t=setTimeout(() => this.setState({p:pr}, ()=>console.log("dispp")), 5400):console.log("nothing");
+    this.state.p.open?t=setTimeout(() => this.setState({p:pr}, ()=>console.log("dispp")), 5000):clearTimeout(t);
+    console.log('update')
   }
 
 
