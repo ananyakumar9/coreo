@@ -5,7 +5,7 @@ import firebase from '../../Config/firebase'
 
 import './Cal.css'
 const db=firebase.firestore()
-var k, newlist=[], displaydday=0;
+var k, newlist=[], displaydday=0, countdown='';
 //https://momentjs.com/docs/#/get-set/month/
 class Screen extends React.Component{
     constructor(props)
@@ -32,6 +32,7 @@ class Screen extends React.Component{
         }
         
         displaydday=0;
+        countdown='';
         this.getquotes()
         this.getdata()
     }
@@ -70,14 +71,14 @@ class Screen extends React.Component{
                 if(displaydday==0)
                 {
                     displaydday='no recent dday'
+                    countdown=''
                 }
                 else{
                     var today=moment().format("DD-MM-YYYY")
                     var startDate = moment(displaydday, "DD-MM-YYYY");
                     var endDay = moment(today, "DD/MM/YYYY");
-                    var dateDiff = startDate.diff(endDay, "days");
-                    displaydday=displaydday+" countdown: "+dateDiff
-                    console.log(dateDiff)
+                    countdown= "days left: "+startDate.diff(endDay, "days");
+                    
 
                 }
             }
@@ -287,7 +288,7 @@ class Screen extends React.Component{
                     <center>
                         <div className="bt br bl w-50 pa1 b--white-10">
                             <div className="underline pa1">Upcoming Events</div>
-                        {displaydday}<br />{}
+                        {displaydday}<br />{countdown}
                         </div>
                   
                 </center>
