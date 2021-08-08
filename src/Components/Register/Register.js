@@ -9,7 +9,12 @@ var newday=[{
     title:"demo",
     date:"31-07-2022"
 }]
-async function writeUserData(userId) {
+var pr={
+    open:false,
+    msg:'null',
+    color:'red'
+}
+async function writeUserData(userId, showmodal) {
     const user = firebase.auth().currentUser;
 
         user.updateProfile({
@@ -21,6 +26,13 @@ async function writeUserData(userId) {
         }).catch((error) => {
         // An error occurred
         // ...
+        pr={
+            open:true,
+            color:'red',
+            msg:error.message
+        }
+        showmodal(pr);
+        console.log(error)
         });  
     await firebase.firestore().collection(userId).doc("user-data").set({
       username: newuser.name,
@@ -35,7 +47,7 @@ async function writeUserData(userId) {
       return 0;
   }
  
-const Register=({onRouteChange, onUserChange})=> {
+const Register=({onRouteChange, onUserChange, showmodal})=> {
   return (
     <article className="br2 ba white b--white-10 mv5 w-100 w-50-m w-25-l mw5 center shadow-5">
         <main className="pa4 black-80" style={{color:'white'}}>
@@ -58,25 +70,47 @@ const Register=({onRouteChange, onUserChange})=> {
                 <div className="" key="7">
                 <input key="8"
                 onClick={ ()=>{
+                    if(newuser.pass==''|| newuser.email=='')
+                    {
+                         pr={
+                            open:true,
+                            color:'red',
+                            msg:'email or pw cannot be blank'
+                        }
+                        showmodal(pr);
+                        
+                    }
+                    else{
+                        pr={
+                            open:true,
+                            color:'blue',
+                            msg:'loading'
+                        }
+                        showmodal(pr);
                     var user
                      firebase.auth().createUserWithEmailAndPassword(newuser.email, newuser.pass)
                     .then((userCredential) => {
                     // Signed in 
+                    
                      user = userCredential.user;
                     console.log(user)
                     console.log(user.uid)
                     onUserChange(user)
-                    writeUserData(user.uid)
-                    
-                    
-                    }).catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log(error)
-                    // ..
-                    });
+                    writeUserData(user.uid, showmodal)
                     onRouteChange('Home') 
                     
+                    }).catch((error) => {
+                        pr={
+                            open:true,
+                            color:'red',
+                            msg:error.message
+                        }
+                        showmodal(pr);
+                        console.log(error)
+                    // ..
+                    });
+                    
+                }
                     // 
                     
                     

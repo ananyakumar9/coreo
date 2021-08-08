@@ -1,10 +1,11 @@
 import React from 'react';
 import firebase from '../../Config/firebase'
-const SignIn=({onRouteChange, onUserChange})=> {
+const SignIn=({onRouteChange, onUserChange, showmodal})=> {
     var newuser={
         email:'',
         pass:''
     }
+    var pr;
   return (
     <article className="br2 ba white b--white-10 mv5 w-100 w-50-m w-25-l mw5 center shadow-5">
         <main className="pa4 black-80" style={{color:'white'}}>
@@ -21,26 +22,55 @@ const SignIn=({onRouteChange, onUserChange})=> {
                 </div>
                 </fieldset>
                 <div className="">
-                <input 
+                <button 
                  onClick={()=>{
-                    var user
+
+                    if(newuser.pass==''|| newuser.email=='')
+                    {
+                         pr={
+                            open:true,
+                            color:'red',
+                            msg:'email or pw cannot be blank'
+                        }
+                        showmodal(pr);
+                        
+                    }
+                    else{
+                        pr={
+                            open:true,
+                            color:'blue',
+                            msg:'loading'
+                        }
+                        showmodal(pr);
+                        var user
                     firebase.auth().signInWithEmailAndPassword(newuser.email, newuser.pass)
                     .then((userCredential) => {
                     // Signed in 
                      user = userCredential.user;
                     console.log(user)
                     onUserChange(user)
+                    onRouteChange('Home')
+
                     // ...
                     })
                     .catch((error) => {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
+                    
+                     pr={
+                        open:true,
+                        color:'red',
+                        msg:error.message
+                    }
+                    showmodal(pr);
                     console.log(error)
                     // ..
+
                     });
+                    
+                    }
+                    
                 
-                    onRouteChange('Home') }}
-                className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" type="submit" value="Sign in"/>
+                    }}
+                className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" type="submit" >Sign In</button>
                 </div>
                 <div className="lh-copy mt3">
                 <p

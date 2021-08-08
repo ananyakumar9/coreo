@@ -28,6 +28,7 @@ class Screen extends React.Component{
             thisYear: moment().format("Y"),
             reqdate:moment().get("date"),
             time: new Date(),
+            showmodal: props.showmodal
             
         }
         
@@ -90,8 +91,14 @@ class Screen extends React.Component{
                
             })
             
-        }).catch(err=>{
-            console.log(err.message)
+        }).catch(error=>{
+            var pr={
+                open:true,
+                msg:error.message,
+                color:'red'
+              }
+              this.state.showmodal(pr);
+              console.log(error)
             
         })
       }
@@ -176,7 +183,7 @@ class Screen extends React.Component{
         
         for(let i=0;i<this.firstDayOfMonth();i++)
         {
-            blanks.push(<span className="day" key={(i+1)*40}>{" "}</span>)
+            blanks.push(<span className="day" key={(i+1)+40}>{" "}</span>)
         }
         
         let daysM=[]
@@ -266,7 +273,7 @@ class Screen extends React.Component{
                         {
                             this.state.weekdaysshort.map((days)=>{
                                 return (
-                                    <span key={days} className="daysOfWeek">{days}</span>
+                                    <span key={days+900} className="daysOfWeek">{days}</span>
 
                                 )
                                 

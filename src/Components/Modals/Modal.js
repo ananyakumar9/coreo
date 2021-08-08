@@ -32,8 +32,8 @@ class Modal extends React.Component{
 
     }
     
-    this.state.p.open?t=setTimeout(() => this.setState({p:pr}, ()=>console.log("dispp")), 5000):clearTimeout(t);
-    console.log('update')
+    this.state.p.open?t=setTimeout(() => this.setState({p:pr}, ()=>console.log("dispp")), 6000):clearTimeout(t);
+    
   }
 
 
@@ -43,7 +43,7 @@ class Modal extends React.Component{
     
         var cname="content "+this.state.p.color
         var mname="modal "+this.state.p.open
-        console.log(cname, mname)
+        
       return(
         <div className={mname} 
         style={{

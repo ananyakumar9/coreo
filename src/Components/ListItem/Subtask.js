@@ -151,7 +151,7 @@ class Subtask extends React.Component{
                           done===0 || done===false?
                           <div className=" pa1 mh3 tl" style={{display:'flex',justifyContent:'space-between'}}>
                             <div className="w-80">
-                            <input type="checkbox" key={index} checked={this.state.completed[index]}
+                            <input type="checkbox" key={index+1000} checked={this.state.completed[index]}
                               onChange={()=>{
                                 var c=this.state.completed
                                 c[index]=!c[index]
@@ -223,7 +223,7 @@ class Subtask extends React.Component{
                           done===true?
                           <div className=" pa1 mh3 tl" style={{display:'flex',justifyContent:'space-between'}}>
                             <div className="w-80">
-                            <input type="checkbox" key={index} checked={this.state.completed[index]}
+                            <input type="checkbox" key={index+2000} checked={this.state.completed[index]}
                               onChange={()=>{
                                 var c=this.state.completed
                                 c[index]=!c[index]

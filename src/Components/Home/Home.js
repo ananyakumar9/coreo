@@ -77,7 +77,7 @@ showsubtask(doc){
             <li className="carousel__slide grid1" id="carousel__slide1">
               
             <div className='tl pa2 yflow' id="home_1">
-              <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}}/>
+              <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
               <div className="bl br bb w-50 center b--white-10">
               <center>
                 <p className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
@@ -154,7 +154,7 @@ showsubtask(doc){
             <ListItem user={this.state.user.uid}
             requiredDate={reqdate} ref={this.myRef} 
             showsubtask={(doc)=>{this.showsubtask(doc)}} 
-            updateSlide={this.updateSlide}/>
+            updateSlide={this.updateSlide} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
            
           </div>
           </li>

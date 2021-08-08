@@ -48,6 +48,16 @@ class ListItem extends React.Component{
           
         })
         
+    }).catch((error)=>
+    {
+      var pr={
+        open:true,
+        msg:error.message,
+        color:'red'
+      }
+      this.state.showmodal(pr);
+      console.log(error)
+      
     })
   }
 
