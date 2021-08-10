@@ -68,7 +68,7 @@ const Register=({onRouteChange, onUserChange, showmodal})=> {
                 </div>
                 </fieldset>
                 <div className="" key="7">
-                <input key="8"
+                <p key="8"
                 onClick={ ()=>{
                     if(newuser.pass==''|| newuser.email=='')
                     {
@@ -115,7 +115,7 @@ const Register=({onRouteChange, onUserChange, showmodal})=> {
                     
                     
                 }}
-                className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" type="submit" value="Create Account"/>
+                className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white">Create Account</p>
                 </div>
                 <div className="lh-copy mt3" key="9">
                 </div>

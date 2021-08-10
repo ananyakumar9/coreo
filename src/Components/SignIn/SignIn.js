@@ -22,7 +22,7 @@ const SignIn=({onRouteChange, onUserChange, showmodal})=> {
                 </div>
                 </fieldset>
                 <div className="">
-                <button 
+                <p 
                  onClick={()=>{
 
                     if(newuser.pass==''|| newuser.email=='')
@@ -46,11 +46,12 @@ const SignIn=({onRouteChange, onUserChange, showmodal})=> {
                     firebase.auth().signInWithEmailAndPassword(newuser.email, newuser.pass)
                     .then((userCredential) => {
                     // Signed in 
+                    
                      user = userCredential.user;
                     console.log(user)
                     onUserChange(user)
+                    
                     onRouteChange('Home')
-
                     // ...
                     })
                     .catch((error) => {
@@ -65,12 +66,12 @@ const SignIn=({onRouteChange, onUserChange, showmodal})=> {
                     // ..
 
                     });
-                    
                     }
+                    
                     
                 
                     }}
-                className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" type="submit" >Sign In</button>
+                className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" type="submit" >Sign In</p>
                 </div>
                 <div className="lh-copy mt3">
                 <p

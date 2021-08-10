@@ -43,11 +43,10 @@ onUserChange=(user)=>{
       {this.state.route==='SignIn'?
       <SignIn onRouteChange={this.onRouteChange} onUserChange={this.onUserChange} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
       :this.state.route==='Register'?
-      <Register onRouteChange={this.onRouteChange} onUserChange={this.onUserChange} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>:
-      this.state.route==='Settings'?
-      <Settings onRouteChange={this.onRouteChange} user={this.state.user} updatenavbar={()=>this.navref.current.updatenavbar('Settings')} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>:
-      
-        !this.state.user==0?
+      <Register onRouteChange={this.onRouteChange} onUserChange={this.onUserChange} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
+      :this.state.route==='Settings'?
+      <Settings onRouteChange={this.onRouteChange} user={this.state.user} updatenavbar={()=>this.navref.current.updatenavbar('Settings')} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
+      :!this.state.user==0?
       
       <Home user={this.state.user}/>:' Loading '
       }

@@ -206,17 +206,19 @@ class Screen extends React.Component{
         //console.log(daysM)
         return(
             <div>
-                <span className="f3">Welcome, {
+                <span>Welcome, {
                     firebase.auth().currentUser.displayName
                 }</span>
                 <br />
+                <span className="f6">
                 {
                     this.state.quote
-                }
+                }</span>
                 <br />
-                {
+                <span className="f7">
+                -{
                     this.state.author
-                }
+                }</span>
 
                 <br />
                 <br />
@@ -290,8 +292,9 @@ class Screen extends React.Component{
                         }
                         </div>
                     </div>
-                    <div className="f4 pa3 mt2">{this.state.time.toLocaleTimeString()}</div>
-            
+                    <br/>
+                    <span className="f4 pa3 mt2"> {this.state.time.toLocaleTimeString()}</span>
+                    <br/><br/>
                     <center>
                         <div className="bt br bl w-50 pa1 b--white-10">
                             <div className="underline pa1">Upcoming Events</div>
