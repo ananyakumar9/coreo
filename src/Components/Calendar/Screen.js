@@ -215,8 +215,8 @@ class Screen extends React.Component{
                     this.state.quote
                 }</span>
                 <br />
-                <span className="f7">
-                -{
+                <span className="f7 tc">
+                By {
                     this.state.author
                 }</span>
 

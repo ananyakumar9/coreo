@@ -53,6 +53,11 @@ class Navigation extends React.Component {
                 this.state.onRouteChange('Home');
               }}
               className='pa2 ma2 f4 link dim underline'>Home</p>
+              <p  onClick={()=>{
+                
+                this.state.onRouteChange('DDay');
+              }}
+              className='pa2 ma2 f4 link dim underline'>Upcoming Events</p>
 
 
           </div>

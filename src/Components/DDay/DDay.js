@@ -1,9 +1,14 @@
 
-import React from 'react'
+import React from 'react';
+import Modal from '../Modals/Modal';
 import moment from 'moment';
-import firebase from '../../Config/firebase'
-import './DDay.css'
-
+import firebase from '../../Config/firebase';
+import './DDay.css';
+var pr={
+    open:false,
+    msg:'null',
+    color:'green'
+  }
 const db=firebase.firestore()
 
 var x='',y='';
@@ -14,12 +19,11 @@ class DDay extends React.Component{
     {
         super(props)
         this.state={
-            showmodal:props.showmodal,
             user: props.user,
             dday:[],
             loaded:false,
         }
-
+        this.myModal = React.createRef();
         
             this.getdata();
     }
@@ -58,8 +62,9 @@ class DDay extends React.Component{
         return(
             
             <div className="br2 h-500px ba white b--white-10 shadow-5 dday">
+                <Modal content={pr} ref={this.myModal}/>
                 <div className="tl">
-                    <button className="crossbutton" onClick={()=>{this.props.updateSwitch(false)}}>
+                    <button className="crossbutton" onClick={()=>{this.props.onRouteChange('Home')}}>
                         X
                     </button>
                 </div>
@@ -79,7 +84,7 @@ class DDay extends React.Component{
                                 msg:"Title or Date cannot be left blank",
                                 open:true,
                             }
-                            this.state.showmodal(pr);
+                            this.myModal.current.showmodal(pr);
                         }
                         else
                         {
@@ -109,7 +114,7 @@ class DDay extends React.Component{
                                 msg:"D-Day successfully written!",
                                 open:true,
                             }
-                            this.state.showmodal(pr)
+                            this.myModal.current.showmodal(pr);
                             Array.from(document.querySelectorAll("input")).forEach(
                                 input => (input.value = "")
                             );
@@ -127,11 +132,11 @@ class DDay extends React.Component{
                                 msg:"Error writing document: "+ error,
                                 open:true,
                             }
-                            this.state.showmodal(pr)
+                            this.myModal.current.showmodal(pr);
                         });
                 }
             
-            }}>New DDay
+            }}>New Event
             </button></div>
             </div>
             <br />

@@ -3,8 +3,9 @@ import SignIn from './Components/SignIn/SignIn';
 import Register from './Components/Register/Register'; 
 import Home from './Components/Home/Home';
 import Navigation from './Components/Navigation/Navigation';
-import Settings from './Components/Settings/Settings'
-import Modal from './Components/Modals/Modal'
+import Settings from './Components/Settings/Settings';
+import DDay from './Components/DDay/DDay';
+import Modal from './Components/Modals/Modal';
 import './App.css';
 
 var pr;
@@ -46,9 +47,11 @@ onUserChange=(user)=>{
       <Register onRouteChange={this.onRouteChange} onUserChange={this.onUserChange} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
       :this.state.route==='Settings'?
       <Settings onRouteChange={this.onRouteChange} user={this.state.user} updatenavbar={()=>this.navref.current.updatenavbar('Settings')} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
-      :!this.state.user==0?
-      
-      <Home user={this.state.user}/>:' Loading '
+      :this.state.route==='Home'?
+      <Home user={this.state.user} onRouteChange={this.onRouteChange}/>
+      :this.state.route==='DDay'?
+      <DDay onRouteChange={this.onRouteChange} user={this.state.user.uid}/>
+      :' Loading '
       }
     </div>
   );

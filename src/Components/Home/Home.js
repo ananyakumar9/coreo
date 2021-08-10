@@ -6,7 +6,7 @@ import firebase from '../../Config/firebase'
 import moment from 'moment';
 import Modal from '../Modals/Modal';
 import Subtask from '../ListItem/Subtask';
-import DDay from '../DDay/DDay';
+
  const db=firebase.firestore()
  var pr={
    open:false,
@@ -31,8 +31,8 @@ class Home extends React.Component{
         subtasks:''
       },
       slide:false,
-      switch:false,
-      
+      onRouteChange:props.onRouteChange
+     // switch:false
     }
     this.myRef = React.createRef();
     this.myModal = React.createRef();
@@ -44,9 +44,8 @@ class Home extends React.Component{
     }
     
   }
-  updateSwitch=(s)=>{this.setState({switch:s})}
   updateSlide=(s)=>{this.setState({slide:s})}
-
+  //updateSwitch=(s)=>{this.setState({switch:s})}
   
 showsubtask(doc){
   this.subtaskref.current.showsubtask(doc, this.state.user);
@@ -55,8 +54,7 @@ showsubtask(doc){
   render(){
     return (
         <div>
-          {!this.state.switch?
-          <div>
+          
           <div className='br2 ba white b--white-10 shadow-5 carousel'>
            
             <Modal content={pr} ref={this.myModal}/>
@@ -80,8 +78,8 @@ showsubtask(doc){
               <div className="bl br bb w-50 center b--white-10">
               <center>
                 <p className="b pv2 ph3 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
-              onClick={()=>{this.updateSwitch(true)}}
-              >Calendar Event Display</p>
+              onClick={()=>{this.state.onRouteChange('DDay');}}
+              >Calendar Events</p>
               </center>
               </div>
             </div>
@@ -178,13 +176,7 @@ showsubtask(doc){
             }
           </ul>
           </div>*/}
-          </div>
-          :
-          <div className='br2 b--white-10 ma3'>
-            <Modal content={pr} ref={this.myModal}/>
-            <DDay showmodal={(p)=>{this.myModal.current.showmodal(p)}} updateSwitch={this.updateSwitch} user={this.state.user.uid}/>
-          </div>
-          }
+        
         </div>
         
       );

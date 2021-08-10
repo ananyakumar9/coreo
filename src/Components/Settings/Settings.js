@@ -166,7 +166,7 @@ class Settings extends React.Component{
       return (
         <div className="settings tl">
           <div>
-          <button className="custombutton" onClick={()=>this.state.onRouteChange('Home')}>Back</button><br /><br />
+          <button className="custombutton" onClick={()=>this.state.onRouteChange('Home')}>Back Home</button><br /><br />
           <img src={this.state.photo} ></img><br />
           <Modal ref={this.modalref} content={pr} />
           </div>

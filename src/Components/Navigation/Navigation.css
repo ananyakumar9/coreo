@@ -12,7 +12,7 @@
 }
 .dropbtn {
     width: 70px;
-    height: 68px;
+    height: 65px;
     margin-top: 3px;
     background: none;
     border: none;
@@ -24,6 +24,7 @@
     object-fit: cover;
 }
 .dropdown-content {
+    width: 130px;
     display: none;
     position: absolute;
     background-color: #f9f9f9;
