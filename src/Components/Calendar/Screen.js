@@ -206,7 +206,7 @@ class Screen extends React.Component{
         //console.log(daysM)
         return(
             <div>
-                <span>Welcome, {
+                <span className="f4">Welcome, {
                     firebase.auth().currentUser.displayName
                 }</span>
                 <br />
@@ -268,9 +268,6 @@ class Screen extends React.Component{
                         </select>
 
                     </div>
-
-                        
-                        
                         <div  className="Alldays">
                         {
                             this.state.weekdaysshort.map((days)=>{
@@ -297,8 +294,8 @@ class Screen extends React.Component{
                     <br/><br/>
                     <center>
                         <div className="bt br bl w-50 pa1 b--white-10">
-                            <div className="underline pa1">Upcoming Events</div>
-                        {displaydday}<br />{countdown}
+                            <div className="b pa1">UPCOMING EVENTS</div>
+                            <div className="f6">{displaydday}<br />{countdown}</div>
                         </div>
                   
                 </center>

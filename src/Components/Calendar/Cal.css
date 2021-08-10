@@ -1,6 +1,6 @@
 .calendar{
   display:block;
-  max-width: 440px;
+  max-width: 400px;
   background-color: black;
   color: white;
   padding:5px;
@@ -9,19 +9,18 @@
 .Alldays{
   display:grid;
   width: fit-content;
-  grid-template-columns: repeat(7, 54px);
-  row-gap:4px;
-  column-gap:8px;
-  margin:4px;
+  grid-template-columns: repeat(7, 50px);
+  row-gap:3px;
+  column-gap:5px;
+  margin:3px;
   justify-content: center;
   
   
 }
 .day, .daysOfWeek{
   display:block;
-  padding:4px;
+  padding:3px;
   text-align: center;
-  
 }
 .day:hover{
   cursor: pointer;

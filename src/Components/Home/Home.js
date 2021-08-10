@@ -57,36 +57,35 @@ showsubtask(doc){
         <div>
           {!this.state.switch?
           <div>
-          
           <div className='br2 ba white b--white-10 shadow-5 carousel'>
            
             <Modal content={pr} ref={this.myModal}/>
            
-           <a href="#carousel__slide2" className="isDisabled">  
-          <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
-          </a>
-          {this.state.slide?
-          <a href="#carousel__slide1" onClick={()=>{this.updateSlide(false)}}>
-          <img src={"https://image.flaticon.com/icons/svg/130/130882.svg"} alt="hell" id="left"/>
-          </a>:
-          <a href="#carousel__slide1" className="isDisabled">
-          <img src={"https://image.flaticon.com/icons/svg/130/130882.svg"} alt="hell" id="left"/>
-          </a>
-          }
-          <ol className="carousel__viewport ml-0">
-            <li className="carousel__slide grid1" id="carousel__slide1">
+            <a href="#carousel__slide2" className="isDisabled">  
+            <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
+            </a>
+            {this.state.slide?
+            <a href="#carousel__slide1" onClick={()=>{this.updateSlide(false)}}>
+            <img src={"https://image.flaticon.com/icons/svg/130/130882.svg"} alt="hell" id="left"/>
+            </a>:
+            <a href="#carousel__slide1" className="isDisabled">
+            <img src={"https://image.flaticon.com/icons/svg/130/130882.svg"} alt="hell" id="left"/>
+            </a>
+            }
+            <ol className="carousel__viewport ml-0">
+            <li className="carousel__slide grid1 yflow" id="carousel__slide1">
               
             <div className='tl pa2 yflow' id="home_1">
               <Screen user={this.state.user} reqdatechange={(newdate)=>{reqdate=newdate; this.myRef.current.datemethod(reqdate)}} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
               <div className="bl br bb w-50 center b--white-10">
               <center>
-                <p className="b ph3 pv2 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
+                <p className="b pv2 ph3 input-reset ba b--white bg-transparent grow pointer f6 dib white" 
               onClick={()=>{this.updateSwitch(true)}}
               >Calendar Event Display</p>
               </center>
               </div>
             </div>
-          <div className="yflow bl" id="home_2">
+          <div className="bl yflow" id="home_2" >
             <br/>
             <table className="center">
             <tr><td className="tl">Title: </td><td className="tl"><input id="input-field" onChange={(e)=>{x=e.target.value}}/></td></tr>
@@ -158,7 +157,7 @@ showsubtask(doc){
            
           </div>
           </li>
-         <li className="carousel__slide" id="carousel__slide2">
+         <li className="carousel__slide yflow" id="carousel__slide2">
           <div className="ma1">
            <Subtask  ref={this.subtaskref} 
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}

@@ -11,7 +11,9 @@
     justify-content:flex-end;
 }
 .dropbtn {
-    margin-top:5px;
+    width: 70px;
+    height: 68px;
+    margin-top: 3px;
     background: none;
     border: none;
     cursor: pointer;

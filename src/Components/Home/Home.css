@@ -1,9 +1,7 @@
-
-
 .grid1{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(440px,1fr));
-    grid-template-rows: repeat(auto-fill,minmax(260px,1fr));
+    /*grid-template-rows: repeat(auto-fill,minmax(260px,1fr));*/
     grid-gap: 10px;
 }
 .grid2{
@@ -30,32 +28,36 @@
   * {
     -ms-overflow-style: none;
   }
+/*
+#carousel__slide1::-webkit-scrollbar {
+    width: 2px;
+  }
+#carousel__slide1::-webkit-scrollbar-track {
+    background: transparent;
+  }
+#carousel__slide1::-webkit-scrollbar-thumb {
+    background: white;
+    border: none;
+  }
  
-#home_1::-webkit-scrollbar {
+#carousel__slide2::-webkit-scrollbar {
     width: 5px;
   }
-#home_1::-webkit-scrollbar-track {
+#carousel__slide2::-webkit-scrollbar-track {
     background: transparent;
   }
-#home_1::-webkit-scrollbar-thumb {
+#carousel__slide2::-webkit-scrollbar-thumb {
     background: white;
     border: none;
   }
-  #home_2::-webkit-scrollbar {
-    width: 5px;
-  }
-#home_2::-webkit-scrollbar-track {
-    background: transparent;
-  }
-#home_2::-webkit-scrollbar-thumb {
-    background: white;
-    border: none;
-  }
-
+*/
   .carousel {
     position: relative;
     filter: drop-shadow(0 0 10px #0003);
-    margin: 3em;
+    margin-right: 3em;
+    margin-left: 3em;
+    margin-bottom: 3em;
+    margin-top: 2em;
     padding: 10px;
   }
   .carousel__viewport {
@@ -78,14 +80,14 @@
     float: right;
     width: 90px;
     height: 50px;
-    margin: 250px -25px 0 0;
+    margin: 220px -22px 0 0;
    display: block;
 }
 #left{
     float: left;
     width: 90px;
     height: 50px;
-    margin: 250px 0 0 -25px;
+    margin: 220px 0 0 -22px;
    display: block;
 }
 

@@ -63,7 +63,7 @@ class DDay extends React.Component{
                         X
                     </button>
                 </div>
-                    <div className="pa2 ma2 b f3">DDay details</div><br/>
+                    <div className="pa2 ma2 b f3">EVENT DETAILS</div><br/>
                     <div className="center pa2" style={{display:'flex',justifyContent:'center'}}>
                     <div className="tl mr4">
                         Title: <br/><input id="input-field" onChange={(e)=>{x=e.target.value}}/><br/><br/>

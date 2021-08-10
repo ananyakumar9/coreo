@@ -26,11 +26,11 @@ class Navigation extends React.Component {
     
   return (
     <nav className='mb4 main' >
-        <div><p className='pa2 f2 ma2 b'>Coreo</p></div>
+        <div><p className='pa2 f2 ma1 b'>Coreo</p></div>
         {this.state.route==='Home' || this.state.route==='Settings'?
-        <div class="dropdown mr2" style={{alignSelf:'center'}}>
+        <div class="dropdown mr2 h-70" style={{alignSelf:'center'}}>
           <button className="dropbtn">
-            <img className="br-100" src={firebase.auth().currentUser.photoURL} width='70px'/>
+            <img className="br-100 mr3" src={firebase.auth().currentUser.photoURL}/>
           </button>
           <div className="dropdown-content">
               <p  onClick={()=>{
@@ -48,7 +48,11 @@ class Navigation extends React.Component {
                   this.state.onRouteChange('Settings');
                 }}
               className='pa2 ma2 f4 link dim underline'>Settings</p>
-
+              <p  onClick={()=>{
+                
+                this.state.onRouteChange('Home');
+              }}
+              className='pa2 ma2 f4 link dim underline'>Home</p>
 
 
           </div>

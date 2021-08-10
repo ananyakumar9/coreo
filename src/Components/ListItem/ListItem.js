@@ -68,7 +68,7 @@ class ListItem extends React.Component{
       return(
         <div>
           <div className='w-70 bg-black center'>
-                {this.state.reqdate}<br />
+               <div className="pv2"> {this.state.reqdate}<br /></div>
                 
                 {
                   newlist.map((doc, index)=>{
