@@ -1,8 +1,8 @@
 import React from 'react';
 import firebase from '../../Config/firebase'
 
-var z=''; var pr;
- const db=firebase.firestore()
+var z='', temp; var pr;
+const db=firebase.firestore()
 class Subtask extends React.Component{
   constructor(props)
   {
@@ -15,13 +15,15 @@ class Subtask extends React.Component{
       completed:'',
       reqdatechange:props.reqdatechange,
       showmodal:props.showmodal,
-      openmodal:false
+      openmodal:false,
+      editIndex:-1,
     }
     pr={
       open:false,
       color:'red',
       msg:'null'
     }
+    temp='';
 
     
   }
@@ -131,9 +133,9 @@ class Subtask extends React.Component{
             
               <button className="mt4 custombutton grow" onClick={()=>{
                       
-                     this.setState({
-                       openmodal:true
-                     }, ()=>{})}}>Delete Entire List</button>
+                      this.setState({
+                        openmodal:true
+                      }, ()=>{})}}>Delete Entire List</button>
             
           
                 </div>
@@ -151,44 +153,82 @@ class Subtask extends React.Component{
                           done===0 || done===false?
                           <div className=" pa1 mh3 tl" style={{display:'flex',justifyContent:'space-between'}}>
                             <div className="w-80">
-                            <input type="checkbox" key={index+1000} checked={this.state.completed[index]}
-                              onChange={()=>{
-                                var c=this.state.completed
-                                c[index]=!c[index]
-                                this.setState({
-                                completed:c
-                              },  ()=>{
-                                var flag=1;
-                                for(var i=0;i<c.length;i++)
-                                  {
-                                    if(c[i]===false || c[i]===0)
-                                    {
-                                      flag=0;
-                                      break;
-                                    }
+                              {
+                              this.state.editIndex==index?
+                              
+                              <input placeholder={doc} onChange={(e)=>temp=e.target.value}></input>
+                              
+                              :
+                              <div>
+                                <input type="checkbox" key={index+1000} checked={this.state.completed[index]}
+                                  onChange={()=>{
+                                    var c=this.state.completed
+                                    c[index]=!c[index]
+                                    this.setState({
+                                    completed:c
+                                  },  ()=>{
+                                    var flag=1;
+                                    for(var i=0;i<c.length;i++)
+                                      {
+                                        if(c[i]===false || c[i]===0)
+                                        {
+                                          flag=0;
+                                          break;
+                                        }
 
-                                  }
-                                  if(flag===1)
-                                  {
-                                    pr={
-                                      open: true,
-                                      msg:'congrats, no pending ',
-                                      color:'green'
+                                      }
+                                      if(flag===1)
+                                      {
+                                        pr={
+                                          open: true,
+                                          msg:'congrats, no pending ',
+                                          color:'green'
 
-                                    }
-                                    this.state.showmodal(pr);
-                                  }
-                               db.collection(this.state.user.uid).doc(this.state.task.id).set({
-                                  ...this.state.task,
-                                  
-                                  completed:this.state.completed
+                                        }
+                                        this.state.showmodal(pr);
+                                      }
+                                  db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                                      ...this.state.task,
+                                      
+                                      completed:this.state.completed
 
-                                  
-                                })
-                              })
-                                }}/>&nbsp;
-                                <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
+                                      
+                                    })
+                                  })
+                                    }}/>&nbsp;
+                                    <span className={this.state.completed[index]===true?"strike":""}>{doc}</span>
+                              </div>
+                            
+                                
+                            
+                            }
                             </div>
+                            {
+                              this.state.editIndex===index?
+                              <button className="crossbuttonlist" onClick={
+                                ()=>{
+                                  var c=this.state.subtasks
+                                  c[index]=temp===""?doc:temp;
+                                  this.setState({
+                                    subtasks:c,
+                                    editIndex:-1
+                                  }, ()=>{
+                                    temp=""
+                                    db.collection(this.state.user.uid).doc(this.state.task.id).set({
+                                      ...this.state.task,
+                                      completed: this.state.completed
+                                    })
+                                  })
+                                }
+                              }>c</button>:
+                              <button className="crossbuttonlist" onClick={
+                                ()=>{
+                                  this.setState({
+                                    editIndex:index
+                                  }, ()=>{})
+                                }
+                              }>e</button>
+                            }
                                 <button className="crossbuttonlist" onClick={()=>{
                                     var c=this.state.subtasks
                                     c.splice(index, 1)
