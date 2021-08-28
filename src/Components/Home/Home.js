@@ -16,20 +16,17 @@ import Subtask from '../ListItem/Subtask';
  var reqdate=moment().format("DD-MM-YYYY")
  var x='';
  var y='';
- var z='';
-var completed=[];
+ var z=[" "];
+
 class Home extends React.Component{
   constructor(props)
   {
     super(props)
     this.state={
       user:props.user,
-      listdets:{
-        title:'',
-        date: moment().format("DD-MM-YYYY"),
-        desc: '',
-        subtasks:''
-      },
+      
+        subtasks:[" "],
+    
       slide:false,
       onRouteChange:props.onRouteChange
      // switch:false
@@ -42,7 +39,7 @@ class Home extends React.Component{
       msg:'null',
       color:'green'
     }
-    
+    x=''; y=''; z=[" "];
   }
   updateSlide=(s)=>{this.setState({slide:s})}
   //updateSwitch=(s)=>{this.setState({switch:s})}
@@ -52,12 +49,17 @@ showsubtask(doc){
 }
 
   render(){
+    z=this.state.subtasks
     return (
         <div>
           
           <div className='br2 ba white b--white-10 shadow-5 carousel'>
            
             <Modal content={pr} ref={this.myModal}/>
+
+
+
+
            
             <a href="#carousel__slide2" className="isDisabled">  
             <img src={"https://image.flaticon.com/icons/svg/130/130884.svg"} alt="hello" id="right"/>
@@ -83,14 +85,50 @@ showsubtask(doc){
               </center>
               </div>
             </div>
+
+
+
+
+
+
           <div className="bl yflow" id="home_2" >
             <br/>
             <table className="center">
-            <tr><td className="tl">Title: </td><td className="tl"><input id="input-field" onChange={(e)=>{x=e.target.value}}/></td></tr>
+            <tr><td className="tl">Title: </td><td className="tl"><input id="input-field" onChange={(e)=>{x=e.target.value;}}/></td></tr>
             <tr><td className="tl"> Desc: </td><td className="tl"><input  id="input-field" onChange={(e)=>{y=e.target.value}}/></td></tr>
-            <tr><td className="tl">Subtasks:</td><td className="tl"><textarea id="input-field" onChange={(e)=>{z=e.target.value}}/></td></tr>
+            <tr><td className="tl">Subtasks:</td></tr><td className="tl">
+            {
+            this.state.subtasks.map((data, index)=>
+            {
+              
+
+              return(
+                <tr><input  id="input-field" onChange={(e)=>{
+                  z=this.state.subtasks;
+                  z[index]=e.target.value;
+                  
+                  this.setState({subtasks:z}, ()=>{console.log(this.state.subtasks)}) 
+                  console.log(this.state.subtasks)}}/></tr>
+
+              )
+            }
+            )
+            }
+            <tr><button className="custombutton grow" onClick={()=>{
+              z=this.state.subtasks
+              z.push(" ");
+              console.log("contents",z)
+
+              this.setState({
+                subtasks:z
+              }, ()=>{
+                console.log(this.state.subtasks)
+
+              })
+            }}>add subtask</button></tr></td>
             </table>
             <button className="custombutton grow" onClick={()=>{
+              console.log(this.state.subtasks)
               if(x===''||y==='')
               {
                 pr={
@@ -101,14 +139,14 @@ showsubtask(doc){
                 this.myModal.current.showmodal(pr);
               }
               else{
-                completed=z.split('\n')
-              completed.fill(0);
+              
+                
             db.collection(this.state.user.uid).add({
                 title: x,
                 date: reqdate,
                 desc: y,
-                subtasks:  z.split('\n'),
-                completed: completed
+                subtasks:  this.state.subtasks,
+                completed: Array(this.state.subtasks.length).fill(0)
             }).then(() => {
               this.myRef.current.datemethod(reqdate)
               pr={
@@ -123,14 +161,11 @@ showsubtask(doc){
               Array.from(document.querySelectorAll("textarea")).forEach(
                 input => (input.value = "")
               );
-              x="";y="";z="";
+              x="";y="";z=[" "]
               this.setState({
-                listdets:{
-                  title:'',
-                  date: '',
-                  desc: '',
-                  subtasks:''
-                }
+                
+                  subtasks:[" "]
+                
               })
           })
           .catch((error) => {
@@ -148,6 +183,15 @@ showsubtask(doc){
             <br />
             <br />
             
+
+
+
+
+
+
+
+
+
             <ListItem user={this.state.user.uid}
             requiredDate={reqdate} ref={this.myRef} 
             showsubtask={(doc)=>{this.showsubtask(doc)}} 
