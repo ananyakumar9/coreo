@@ -16,7 +16,7 @@ import Subtask from '../ListItem/Subtask';
  var reqdate=moment().format("DD-MM-YYYY")
  var x='';
  var y='';
- var z=[" "];
+ var z=[""];
 
 class Home extends React.Component{
   constructor(props)
@@ -25,7 +25,7 @@ class Home extends React.Component{
     this.state={
       user:props.user,
       
-        subtasks:[" "],
+        subtasks:[""],
     
       slide:false,
       onRouteChange:props.onRouteChange
@@ -39,7 +39,7 @@ class Home extends React.Component{
       msg:'null',
       color:'green'
     }
-    x=''; y=''; z=[" "];
+    x=''; y=''; z=[""];
   }
   updateSlide=(s)=>{this.setState({slide:s})}
   //updateSwitch=(s)=>{this.setState({switch:s})}
@@ -101,14 +101,30 @@ showsubtask(doc){
             this.state.subtasks.map((data, index)=>
             {
               
-
               return(
-                <tr><input  id="input-field" onChange={(e)=>{
+                <tr><input value={data}  id="input-field" onChange={(e)=>{
                   z=this.state.subtasks;
                   z[index]=e.target.value;
                   
                   this.setState({subtasks:z}, ()=>{console.log(this.state.subtasks)}) 
-                  console.log(this.state.subtasks)}}/></tr>
+                  console.log(this.state.subtasks)}}/>
+                    
+                    {
+                      this.state.subtasks.length>1?
+                      <button onClick={()=>{
+                        z=this.state.subtasks;
+                        z.splice(index, 1);
+                      
+                      this.setState({subtasks:z}, ()=>{console.log(this.state.subtasks)})
+                      }}>x</button>:
+                      <button class="disabled">x</button>
+                      
+
+
+                    }
+                    </tr>
+                  
+                  
 
               )
             }
@@ -116,7 +132,7 @@ showsubtask(doc){
             }
             <tr><button className="custombutton grow" onClick={()=>{
               z=this.state.subtasks
-              z.push(" ");
+              z.push("");
               console.log("contents",z)
 
               this.setState({
@@ -145,8 +161,8 @@ showsubtask(doc){
                 title: x,
                 date: reqdate,
                 desc: y,
-                subtasks:  this.state.subtasks,
-                completed: Array(this.state.subtasks.length).fill(0)
+                subtasks:  this.state.subtasks.filter(e =>  e),
+                completed: Array(this.state.subtasks.filter(e =>  e).length).fill(0)
             }).then(() => {
               this.myRef.current.datemethod(reqdate)
               pr={
@@ -161,10 +177,10 @@ showsubtask(doc){
               Array.from(document.querySelectorAll("textarea")).forEach(
                 input => (input.value = "")
               );
-              x="";y="";z=[" "]
+              x="";y="";z=[""]
               this.setState({
                 
-                  subtasks:[" "]
+                  subtasks:[""]
                 
               })
           })
@@ -196,12 +212,12 @@ showsubtask(doc){
             requiredDate={reqdate} ref={this.myRef} 
             showsubtask={(doc)=>{this.showsubtask(doc)}} 
             updateSlide={this.updateSlide} showmodal={(p)=>{this.myModal.current.showmodal(p)}}/>
-           
+          
           </div>
           </li>
-         <li className="carousel__slide yflow" id="carousel__slide2">
+          <li className="carousel__slide yflow" id="carousel__slide2">
           <div className="ma1">
-           <Subtask  ref={this.subtaskref} 
+            <Subtask  ref={this.subtaskref} 
           showmodal={(p)=>{this.myModal.current.showmodal(p)}}
           reqdatechange={()=>{this.myRef.current.datemethod(reqdate);}}
           updateSlide={this.updateSlide}

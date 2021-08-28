@@ -19,7 +19,8 @@ class Settings extends React.Component{
         onRouteChange:props.onRouteChange,
         user:firebase.auth().currentUser,
         photo: firebase.auth().currentUser.photoURL,
-        updatenavbar: props.updatenavbar
+        updatenavbar: props.updatenavbar,
+        openmodal: false
     }
     x=this.state.user.displayName;
     y=this.state.user.photoURL;
@@ -165,6 +166,40 @@ class Settings extends React.Component{
    
       return (
         <div className="settings tl">
+          {
+                this.state.openmodal?
+                <div className="modal  true">
+                  <div className="content red">
+                  do you want to delete?<br />
+                  <button onClick={()=>{
+                      
+                      this.setState({
+                        openmodal:false
+                      }, ()=>{})}}>no</button>
+                  
+                  <button onClick={()=>{
+                      const user = firebase.auth().currentUser;
+
+                      user.delete().then(() => {
+                        // User deleted.
+                        window.location.reload(true);
+                        this.state.onRouteChange('SignIn');
+                      }).catch((error) => {
+                        // An error ocurred
+                        // ...
+                      })
+                            
+                      }}>yes</button>
+                      
+
+                  </div>
+                  
+                </div>:''
+              }
+
+
+
+
           <div>
           <button className="custombutton" onClick={()=>this.state.onRouteChange('Home')}>Back Home</button><br /><br />
           <img src={this.state.photo} ></img><br />
@@ -188,16 +223,9 @@ class Settings extends React.Component{
 
 
           <center>
-          <p onClick={()=>{const user = firebase.auth().currentUser;
-
-            user.delete().then(() => {
-              // User deleted.
-              window.location.reload(true);
-              this.state.onRouteChange('SignIn');
-            }).catch((error) => {
-              // An error ocurred
-              // ...
-            })}}
+          <p onClick={()=>{
+            this.setState({openmodal:true}, ()=>{})
+          }}
             className='pa2 ma2 f4 link dim underline w-40' style={{cursor:'pointer'}}>Delete Account
               </p>
             </center>

@@ -1,3 +1,8 @@
+
+.disabled{
+  pointer-events: none;
+}
+
 .grid1{
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(440px,1fr));
