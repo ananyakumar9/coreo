@@ -69,7 +69,7 @@ class Screen extends React.Component{
                 }
                     
                 
-                if(displaydday==0)
+                if(displaydday==0 || displaydday=='no recent dday' )
                 {
                     displaydday='no recent dday'
                     countdown=''
@@ -77,8 +77,9 @@ class Screen extends React.Component{
                 else{
                     var today=moment().format("DD-MM-YYYY")
                     var startDate = moment(displaydday, "DD-MM-YYYY");
-                    var endDay = moment(today, "DD/MM/YYYY");
-                    countdown= "days left: "+startDate.diff(endDay, "days");
+                    
+                    countdown= "days left: "+startDate.diff(today, "days");
+                    console.log(displaydday)
                     
 
                 }
